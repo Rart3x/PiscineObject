@@ -16,6 +16,8 @@ int main (void) {
 	bank.creditAccount(100, accountA);
 	bank.creditAccount(100, accountB);
 
+	bank.deleteAccount(accountA.getId());
+
 	std::cout << "Account : " << std::endl;
 	std::cout << accountA << std::endl;
 	std::cout << accountB << std::endl;

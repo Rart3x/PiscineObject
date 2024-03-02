@@ -4,7 +4,7 @@ Bank::Bank() : currentAccountId(0), liquidity(0) {}
 Bank::~Bank() {}
 
 void    Bank::addAccount(Account* account) {
-    this->clientAccounts.push_back(account);
+    this->clientAccounts[account->getId()] = account;
 }
 
 Account    Bank::createAccount() {
@@ -25,7 +25,11 @@ void    Bank::debitAccount(const double amount, Account &account) {
     account.debitAmount(amount);
 }
 
-std::vector<Account *>  Bank::getClientAccounts() const {
+void    Bank::deleteAccount(const int accountId) {
+    this->clientAccounts.erase(accountId);
+}
+
+std::map<const int, Account *>  Bank::getClientAccounts() const {
     return this->clientAccounts;
 }
 
@@ -37,15 +41,15 @@ void    Bank::setLiquidity(const int liquidity) {
     this->liquidity = liquidity;
 }
 
-std::ostream&   operator <<(std::ostream& p_os, const Bank& p_bank) {
+std::ostream& operator<<(std::ostream& p_os, const Bank& p_bank) {
     p_os << "Bank informations : " << std::endl;
-    p_os << "Liquidity : " << p_bank.getLiquidity() <<std::endl;
+    p_os << "Liquidity : " << p_bank.getLiquidity() << std::endl;
 
-    std::vector<Account *> clientsAccounts = p_bank.getClientAccounts();
-    std::vector<Account *>::iterator it;
+    std::map<const int, Account *> clientsAccounts = p_bank.getClientAccounts();
+    std::map<const int, Account *>::iterator it;
 
-    for (it = clientsAccounts.begin(); it < clientsAccounts.end(); it++)
-        p_os << *(*it) << std::endl;
-    
-    return (p_os);
+    for (it = clientsAccounts.begin(); it != clientsAccounts.end(); ++it)
+        p_os << *(it->second) << std::endl;
+
+    return p_os;
 }

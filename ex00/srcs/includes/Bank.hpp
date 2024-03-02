@@ -1,6 +1,6 @@
 #pragma once
 
-#include <vector>
+#include <map>
 
 #include "Account.hpp"
 
@@ -11,16 +11,17 @@ class Bank {
         Bank();
         ~Bank();
 
-        void    addAccount(Account* account);
-        Account    createAccount();
-        void    creditAccount(const double amount, Account &account);
-        void    debitAccount(const double amount, Account &account);
+        void        addAccount(Account* account);
+        Account     createAccount();
+        void        creditAccount(const double amount, Account &account);
+        void        debitAccount(const double amount, Account &account);
+        void        deleteAccount(const int accountId);
 
-        void    creditLiquidity(const double amount);
+        void        creditLiquidity(const double amount);
         
         // Getters functions //
-        std::vector<Account *>  getClientAccounts() const;
-        int                     getLiquidity() const;
+        std::map<const int, Account *>  getClientAccounts() const;
+        int                             getLiquidity() const;
         
         // Setters functions //
         void    setLiquidity(const int liquidity);
@@ -29,7 +30,7 @@ class Bank {
         int currentAccountId;
         int liquidity;
 
-        std::vector<Account *> clientAccounts;
+        std::map<const int, Account*> clientAccounts;
 };
 
 // Overloads functions //
