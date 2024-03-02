@@ -21,7 +21,7 @@ int main (void) {
 	std::cout << " ----- " << std::endl;
 	std::cout << " ----- " << std::endl;
 
-	bank.loan(7, accountA.getId());
+	bank.loan(7, 0);
 
 	std::cout << "Account : " << std::endl;
 

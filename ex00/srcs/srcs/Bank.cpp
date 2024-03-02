@@ -30,7 +30,8 @@ void    Bank::deleteAccount(const int accountId) {
 }
 
 void    Bank::loan(const double amount, const int accountId) {
-    if (this->liquidity >= amount)
+    if (this->liquidity >= amount && amount > 0
+        && this->clientAccounts.find(accountId) != this->clientAccounts.end())
         this->creditAccount(amount, *this->clientAccounts[accountId]);
 }
 
