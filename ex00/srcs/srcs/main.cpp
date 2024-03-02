@@ -16,25 +16,35 @@ int main (void) {
 
 	std::cout << " ----- " << std::endl;
 
-	std::cout << "Bank : " << std::endl;
-	std::cout << bank;
+	try {
+		std::cout << "Bank : " << std::endl;
+		std::cout << bank;
+	}
+	catch (const std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
 
 	std::cout << " ----- " << std::endl;
-	std::cout << " ----- " << std::endl;
 
-	bank.loan(7, accountA.getId());
+	try {
+		bank.loan(500, accountA.getId());
+		std::cout << "Bank after Loan: " << std::endl;
+		std::cout << bank;
+	}
+	catch (const std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
 
-	std::cout << "Account : " << std::endl;
+	Account *accountCopy;
 
-	std::cout << " ----- " << std::endl;
-
-	std::cout << "Bank : " << std::endl;
-	std::cout << bank;
-
-	Account *accountCopy = bank[0];
-
-	std::cout << "COPY" << std::endl;
-	std::cout << *accountCopy << std::endl;
+	try {
+		accountCopy = bank[5];
+		std::cout << "COPY" << std::endl;
+		std::cout << *accountCopy << std::endl;
+	}
+	catch (const std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
 
 	return (0);
 }

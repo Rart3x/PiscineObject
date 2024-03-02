@@ -1,6 +1,7 @@
 #pragma once
 
 #include <map>
+#include <exception>
 
 #include "Account.hpp"
 
@@ -18,8 +19,12 @@ class Bank {
         void        deleteAccount(const int accountId);
 
         void        creditLiquidity(const double amount);
+        void        debitLiquidity(const double amount);
+
+        bool        isClient(const int accountId);
 
         void        loan(const double amount, const int accountId);
+        void        loanAccount(const double amount, Account &account);
         
         // Getters functions //
         std::map<const int, Account *>  getClientAccounts() const;

@@ -17,10 +17,6 @@ void    Bank::creditAccount(const double amount, Account &account) {
     account.creditAmount(amount - (amount * 0.05));
 }
 
-void    Bank::creditLiquidity(const double amount) {
-    this->liquidity += amount;
-}
-
 void    Bank::debitAccount(const double amount, Account &account) {
     account.debitAmount(amount);
 }
@@ -29,10 +25,31 @@ void    Bank::deleteAccount(const int accountId) {
     this->clientAccounts.erase(accountId);
 }
 
+void    Bank::creditLiquidity(const double amount) {
+    this->liquidity += amount;
+}
+
+void    Bank::debitLiquidity(const double amount) {
+    this->liquidity -= amount;
+}
+
+bool    Bank::isClient(const int accountId) {
+    if (this->clientAccounts.find(accountId) != this->clientAccounts.end())
+        return true;
+    return false;
+}
+
 void    Bank::loan(const double amount, const int accountId) {
-    if (this->liquidity >= amount && amount > 0
-        && this->clientAccounts.find(accountId) != this->clientAccounts.end())
-        this->creditAccount(amount, *this->clientAccounts[accountId]);
+    if (this->liquidity >= amount && amount > 0 && isClient(accountId)) {
+        this->loanAccount(amount, *this->clientAccounts[accountId]);
+        this->debitLiquidity(amount);
+    }
+    else
+        throw std::runtime_error("Your loan request has been refused.");
+}
+
+void    Bank::loanAccount(const double amount, Account &account) {
+    account.creditAmount(amount);
 }
 
 std::map<const int, Account *>  Bank::getClientAccounts() const {
@@ -48,9 +65,9 @@ void    Bank::setLiquidity(const int liquidity) {
 }
 
 Account*    Bank::operator[](const int accountId) {
-    if (this->clientAccounts.find(accountId) != this->clientAccounts.end())
+    if (isClient(accountId))
         return this->clientAccounts[accountId];
-    return NULL;
+    throw std::runtime_error("Error: This account doesn't exist");
 }
 
 std::ostream& operator<<(std::ostream& p_os, const Bank& p_bank) {
