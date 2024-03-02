@@ -8,12 +8,16 @@ void    Bank::addAccount(Account* account) {
 }
 
 void    Bank::creditAccount(const double amount, Account &account) {
-    account.creditAmount(amount);
+    this->creditLiquidity(amount * 0.05);
+    account.creditAmount(amount - (amount * 0.05));
+}
+
+void    Bank::creditLiquidity(const double &amount) {
+    this->liquidity += amount;
 }
 
 void    Bank::debitAccount(const double amount, Account &account) {
     account.debitAmount(amount);
-
 }
 
 std::vector<Account *>  Bank::getClientAccounts() const {

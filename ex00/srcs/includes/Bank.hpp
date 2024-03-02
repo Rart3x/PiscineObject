@@ -14,6 +14,8 @@ class Bank {
         void    addAccount(Account* account);
         void    creditAccount(const double amount, Account &account);
         void    debitAccount(const double amount, Account &account);
+
+        void    creditLiquidity(const double &amount);
         
         // Getters functions //
         std::vector<Account *>  getClientAccounts() const;

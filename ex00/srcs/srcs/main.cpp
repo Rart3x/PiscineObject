@@ -7,16 +7,13 @@ int main (void) {
 
 	Bank bank = Bank();
 
-	bank.setLiquidity(999);
+	bank.setLiquidity(1000);
 
 	bank.addAccount(&accountA);
 	bank.addAccount(&accountB);
 
-	bank.creditAccount(200, accountA);
-	bank.debitAccount(25, accountA);
-
-	bank.creditAccount(200, accountB);
-	bank.creditAccount(25, accountB);
+	bank.creditAccount(100, accountA);
+	bank.creditAccount(100, accountB);
 
 	std::cout << "Account : " << std::endl;
 	std::cout << accountA << std::endl;
