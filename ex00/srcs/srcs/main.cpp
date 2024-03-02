@@ -12,6 +12,7 @@ int main (void) {
 	bank.addAccount(&accountA);
 
 	bank.creditAccount(100, accountA);
+	bank.debitAccount(125, accountA);
 
 	std::cout << " ----- " << std::endl;
 
@@ -21,7 +22,7 @@ int main (void) {
 	std::cout << " ----- " << std::endl;
 	std::cout << " ----- " << std::endl;
 
-	bank.loan(7, 0);
+	bank.loan(7, accountA.getId());
 
 	std::cout << "Account : " << std::endl;
 
@@ -29,6 +30,11 @@ int main (void) {
 
 	std::cout << "Bank : " << std::endl;
 	std::cout << bank;
+
+	Account *accountCopy = bank[0];
+
+	std::cout << "COPY" << std::endl;
+	std::cout << *accountCopy << std::endl;
 
 	return (0);
 }

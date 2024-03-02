@@ -47,6 +47,12 @@ void    Bank::setLiquidity(const int liquidity) {
     this->liquidity = liquidity;
 }
 
+Account*    Bank::operator[](const int accountId) {
+    if (this->clientAccounts.find(accountId) != this->clientAccounts.end())
+        return this->clientAccounts[accountId];
+    return NULL;
+}
+
 std::ostream& operator<<(std::ostream& p_os, const Bank& p_bank) {
     p_os << "Bank informations : " << std::endl;
     p_os << "Liquidity : " << p_bank.getLiquidity() << std::endl;

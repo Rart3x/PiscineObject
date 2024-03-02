@@ -28,6 +28,8 @@ class Bank {
         // Setters functions //
         void    setLiquidity(const int liquidity);
 
+        Account* operator [] (const int accountId);
+
     private:
         int currentAccountId;
         double liquidity;
