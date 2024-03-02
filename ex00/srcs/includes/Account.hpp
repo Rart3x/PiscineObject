@@ -6,12 +6,10 @@ class Account {
 
     public:
         // Constructor/Destructor //
-        Account(int id);
         ~Account();
 
         // Getters functions //
         double    getAmount() const;
-        int       getCurrentId() const;
         int       getId() const;
         
         // Setters functions //
@@ -24,8 +22,9 @@ class Account {
 
         double  amount;
 
-        int     currentId;
         int     id;
+
+        Account(int id);
 
         void    creditAmount(const double amount);
         void    debitAmount(const double amount);

@@ -15,10 +15,6 @@ double Account::getAmount() const {
     return this->amount;
 }
 
-int Account::getCurrentId() const {
-    return this->currentId;
-}
-
 int Account::getId() const {
     return this->id;
 }

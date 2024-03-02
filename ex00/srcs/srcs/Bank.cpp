@@ -1,10 +1,15 @@
 #include "../includes/Bank.hpp"
 
-Bank::Bank() : liquidity(0) {}
+Bank::Bank() : currentAccountId(0), liquidity(0) {}
 Bank::~Bank() {}
 
 void    Bank::addAccount(Account* account) {
     this->clientAccounts.push_back(account);
+}
+
+Account    Bank::createAccount() {
+    this->currentAccountId++;
+    return Account(this->currentAccountId - 1);
 }
 
 void    Bank::creditAccount(const double amount, Account &account) {
@@ -12,7 +17,7 @@ void    Bank::creditAccount(const double amount, Account &account) {
     account.creditAmount(amount - (amount * 0.05));
 }
 
-void    Bank::creditLiquidity(const double &amount) {
+void    Bank::creditLiquidity(const double amount) {
     this->liquidity += amount;
 }
 

@@ -12,10 +12,11 @@ class Bank {
         ~Bank();
 
         void    addAccount(Account* account);
+        Account    createAccount();
         void    creditAccount(const double amount, Account &account);
         void    debitAccount(const double amount, Account &account);
 
-        void    creditLiquidity(const double &amount);
+        void    creditLiquidity(const double amount);
         
         // Getters functions //
         std::vector<Account *>  getClientAccounts() const;
@@ -25,6 +26,7 @@ class Bank {
         void    setLiquidity(const int liquidity);
 
     private:
+        int currentAccountId;
         int liquidity;
 
         std::vector<Account *> clientAccounts;

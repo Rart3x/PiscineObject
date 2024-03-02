@@ -2,10 +2,11 @@
 #include "../includes/Bank.hpp"
 
 int main (void) {
-	Account accountA = Account(1);
-	Account accountB = Account(2);
 
 	Bank bank = Bank();
+
+	Account accountA = bank.createAccount();
+	Account accountB = bank.createAccount();
 
 	bank.setLiquidity(1000);
 
