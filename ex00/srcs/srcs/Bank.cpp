@@ -29,11 +29,16 @@ void    Bank::deleteAccount(const int accountId) {
     this->clientAccounts.erase(accountId);
 }
 
+void    Bank::loan(const double amount, const int accountId) {
+    if (this->liquidity >= amount)
+        this->creditAccount(amount, *this->clientAccounts[accountId]);
+}
+
 std::map<const int, Account *>  Bank::getClientAccounts() const {
     return this->clientAccounts;
 }
 
-int   Bank::getLiquidity() const {
+double   Bank::getLiquidity() const {
     return this->liquidity;
 }
 
