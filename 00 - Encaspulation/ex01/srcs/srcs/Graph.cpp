@@ -1,11 +1,10 @@
 #include "../includes/Graph.hpp"
 
-Graph::Graph() : size(0) {}
+Graph::Graph() : size(0), maxX(0), maxY(0) {}
 
 Graph::~Graph() {}
 
 void    Graph::addCoord(float x, float y) {
-
     if (x < 0 || y < 0)
         throw Exceptions::NegativeCoordinates();
 

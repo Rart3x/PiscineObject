@@ -1,6 +1,6 @@
 #pragma once
 
-#include <string>
+#include <iostream>
 
 class Exceptions{
 
@@ -9,6 +9,8 @@ class Exceptions{
 		class	NegativeCoordinates : public std::exception
 		{
 			public:
-				virtual const char *	what() const throw() {return ("Error: ZOB add negative coordinates");};
+				virtual const char *	what() const throw() {return ("Error: Can't add negative coordinates");};
 		};
+
+
 };

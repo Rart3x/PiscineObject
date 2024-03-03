@@ -11,7 +11,7 @@ MAIN_SRC = srcs/main.cpp
 MAIN_OBJ = $(OBJ_DIR)/main.o
 
 CC = clang++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -MMD -MP
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -MMD -MP -gdwarf-2
 
 DIRDUP = mkdir -p $(@D)
 
