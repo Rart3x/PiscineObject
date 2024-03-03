@@ -1,5 +1,5 @@
-#include "../includes/Account.hpp"
-#include "../includes/Bank.hpp"
+#include "./includes/Account.hpp"
+#include "./includes/Bank.hpp"
 
 int main (void) {
 
@@ -21,7 +21,7 @@ int main (void) {
 		std::cout << bank;
 	}
 	catch (const std::exception &e) {
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 
 	std::cout << " ----- " << std::endl;
@@ -32,7 +32,7 @@ int main (void) {
 		std::cout << bank;
 	}
 	catch (const std::exception &e) {
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 
 	Account *accountCopy;
@@ -43,7 +43,7 @@ int main (void) {
 		std::cout << *accountCopy << std::endl;
 	}
 	catch (const std::exception &e) {
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 
 	return (0);

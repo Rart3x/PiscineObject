@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Exceptions.hpp"
+
 #include <iostream>
 #include <list>
 

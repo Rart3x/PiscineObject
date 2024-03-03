@@ -45,7 +45,7 @@ void    Bank::loan(const double amount, const int accountId) {
         this->debitLiquidity(amount);
     }
     else
-        throw std::runtime_error("Your loan request has been refused.");
+        throw Exceptions::LoanRequestRefused();
 }
 
 void    Bank::loanAccount(const double amount, Account &account) {
@@ -67,7 +67,7 @@ void    Bank::setLiquidity(const int liquidity) {
 Account*    Bank::operator[](const int accountId) {
     if (isClient(accountId))
         return this->clientAccounts[accountId];
-    throw std::runtime_error("Error: This account doesn't exist");
+    throw Exceptions::InexistantAccount();
 }
 
 std::ostream& operator<<(std::ostream& p_os, const Bank& p_bank) {

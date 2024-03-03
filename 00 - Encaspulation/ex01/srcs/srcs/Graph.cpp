@@ -5,6 +5,10 @@ Graph::Graph() : size(0) {}
 Graph::~Graph() {}
 
 void    Graph::addCoord(float x, float y) {
+
+    if (x < 0 || y < 0)
+        throw Exceptions::NegativeCoordinates();
+
     if (x > this->maxX) maxX = x;
     if (y > this->maxY) maxY = y;
 
@@ -14,9 +18,11 @@ void    Graph::addCoord(float x, float y) {
 
 void Graph::printCoord() const {
     for (int i = maxY; i >= 0; --i) {
-        std::cout<< i << " ";
+        std::cout << i << " ";
+
         for (int j = 0; j <= maxX; ++j) {
             bool found = false;
+        
             for (std::list<Coordinate>::const_iterator it = coordinates.begin(); it != coordinates.end(); ++it) {
                 if (it->x == j && it->y == i) {
                     std::cout << "X ";
@@ -28,9 +34,11 @@ void Graph::printCoord() const {
         }
         std::cout << std::endl;
     }
+
     std::cout << "  ";
-    for (int j = 0; j <= maxX; ++j) {
+    
+    for (int j = 0; j <= maxX; ++j)
         std::cout << j << " ";
-    }
+
     std::cout << std::endl;
 }
