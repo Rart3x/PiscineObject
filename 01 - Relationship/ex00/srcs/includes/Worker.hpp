@@ -1,8 +1,10 @@
 #pragma once 
 
-#include "Shovel.hpp"
+#include "Tool.hpp"
 
 #include <iostream>
+
+class Tool;
 
 struct  Position {
     float   x;
@@ -24,11 +26,12 @@ class Worker {
         Worker(float x, float y, int level, int exp);
         ~Worker();
 
-        void    equipShovel();
-        void    desquipShovel();
+        void    equipTool(Tool* tool);
+        void    desequipTool();
+        void    useTool();
 
     private:
         Position        pos;
-        Shovel          *shovel;
+        Tool            *tool;
         Statistic       stat;
 };

@@ -4,11 +4,11 @@
 
 #include <iostream>
 
-class Shovel : public Tool {
+class Hammer : public Tool {
 
     public:
-        Shovel();
-        ~Shovel();
+        Hammer();
+        ~Hammer();
 
         void    use();
 
