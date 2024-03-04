@@ -18,7 +18,6 @@ void    Worker::equipTool(Tool* tool) {
 }
 
 void    Worker::desequipTool() {
-
     if (this->tool) {
         this->tool->setEquiped();
         this->tool = NULL;
@@ -34,4 +33,37 @@ void    Worker::useTool(){
         this->tool->use();
     else
         std::cout << "Empty hands for USE" << std::endl;
+}
+
+void    Worker::addWorkshop(Workshop* workshop) {
+    if (!isInWorkshop(workshop)) {
+        if (workshop) {
+            this->workshops.push_back(workshop);
+            std::cout << "Registered in Workshop" << std::endl;
+        }
+    }
+    else std::cout << "Already registered in this workshop" << std::endl;
+}
+
+void    Worker::deleteWorkshop(Workshop *workshop) {
+    if (isInWorkshop(workshop)) {
+        if (workshop) {
+            for (std::list<Workshop *>::iterator it = this->workshops.begin(); it != this->workshops.end(); ++it) {
+                if (*it == workshop) {
+                    *(it) = NULL;
+                    std::cout << "Deleted a Workshop" << std::endl;
+                    break;
+                }
+            }
+        }
+    }
+    else std::cout << "Not registered in this workshop" << std::endl;
+}
+
+bool    Worker::isInWorkshop(Workshop* workshop) {
+    for (std::list<Workshop *>::iterator it = this->workshops.begin(); it != this->workshops.end(); ++it) {
+        if (*it == workshop)
+            return true;
+    }
+    return false;
 }

@@ -1,10 +1,13 @@
 #pragma once 
 
 #include "Tool.hpp"
+#include "Workshop.hpp"
 
 #include <iostream>
+#include <list>
 
 class Tool;
+class Workshop;
 
 struct  Position {
     float   x;
@@ -30,8 +33,15 @@ class Worker {
         void    desequipTool();
         void    useTool();
 
+        void    addWorkshop(Workshop *workshop);
+        void    deleteWorkshop(Workshop* workshop);
+
+        bool    isInWorkshop(Workshop* workshop);
+
     private:
         Position        pos;
         Tool            *tool;
         Statistic       stat;
+
+        std::list<Workshop *> workshops;
 };

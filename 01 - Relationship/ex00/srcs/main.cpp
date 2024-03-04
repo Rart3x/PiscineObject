@@ -2,32 +2,62 @@
 #include "./includes/Shovel.hpp"
 #include "./includes/Tool.hpp"
 #include "./includes/Worker.hpp"
+#include "./includes/Workshop.hpp"
 
 int main (void) {
-    Tool    *tool;
+    // Tool    *tool;
     
-    Shovel  *shovel = new Shovel();
-    Hammer  *hammer = new Hammer();
+    // Shovel  *shovel = new Shovel();
+    // Hammer  *hammer = new Hammer();
     
     Worker  worker(5, 5, 100, 100000);
     Worker  worker1(5, 5, 100, 100000);
 
-    tool = hammer;
+    Workshop *workshop = new Workshop();
+    Workshop *workshop1 = new Workshop();
 
-    worker.equipTool(shovel);
-    worker1.equipTool(shovel);
+    // tool = hammer;
 
-    worker.useTool();
-    worker1.useTool();
+    // worker.equipTool(shovel);
+    // worker1.equipTool(shovel);
 
-    worker.desequipTool();
-    worker1.desequipTool();
+    std::cout << "<---------------------------------------->" << std::endl;
 
-    shovel->use();
-    tool->use();
+    // worker.useTool();
+    // worker1.useTool();
 
-    worker1.equipTool(tool);
-    worker1.useTool();
+    std::cout << "<---------------------------------------->" << std::endl;
 
-    delete shovel;
+    // worker.desequipTool();
+    // worker1.desequipTool();
+
+    std::cout << "<---------------------------------------->" << std::endl;
+
+    // shovel->use();
+    // tool->use();
+
+    std::cout << "<---------------------------------------->" << std::endl;
+
+    // worker1.equipTool(tool);
+    // worker1.useTool();
+
+    std::cout << "<---------------------------------------->" << std::endl;
+
+    workshop->addWorker(&worker);
+    workshop->addWorker(&worker);
+
+    std::cout << "<---------------------------------------->" << std::endl;
+
+    workshop1->addWorker(&worker);
+
+    std::cout << "<---------------------------------------->" << std::endl;
+    workshop->deleteWorker(&worker);
+    workshop->deleteWorker(&worker);
+
+    std::cout << "<---------------------------------------->" << std::endl;
+    workshop1->deleteWorker(&worker);
+
+    // delete shovel;
+    delete workshop;
+    delete workshop1;
 }
