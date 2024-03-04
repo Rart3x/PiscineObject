@@ -60,12 +60,14 @@ int main (void) {
     std::cout << "<---------------------------------------->" << std::endl;
     worker.work();
     workshop->addWorker(&worker);
+    workshop1->addWorker(&worker);
     worker.work();
 
     std::cout << "<---------------------------------------->" << std::endl;
     workshop->addWorker(&worker1);
     workshop->executeWorkDay();
 
+    delete hammer;
     delete shovel;
     delete workshop;
     delete workshop1;
