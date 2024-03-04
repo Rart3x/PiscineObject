@@ -19,7 +19,7 @@ void Workshop::deleteWorker(Worker* worker) {
         if (worker) {
             for (std::list<Worker *>::iterator it = workers.begin(); it != workers.end(); ++it) {
                 if (*it == worker) {
-                    *(it) = NULL;
+                    this->workers.erase(it);
                     std::cout << "Deleted a Worker" << std::endl;
                     worker->deleteWorkshop(this);
                     break;

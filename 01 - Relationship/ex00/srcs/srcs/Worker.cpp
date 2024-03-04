@@ -50,7 +50,7 @@ void    Worker::deleteWorkshop(Workshop *workshop) {
         if (workshop) {
             for (std::list<Workshop *>::iterator it = this->workshops.begin(); it != this->workshops.end(); ++it) {
                 if (*it == workshop) {
-                    *(it) = NULL;
+                    this->workshops.erase(it);
                     std::cout << "Deleted a Workshop" << std::endl;
                     break;
                 }
@@ -66,4 +66,10 @@ bool    Worker::isInWorkshop(Workshop* workshop) {
             return true;
     }
     return false;
+}
+
+void    Worker::work() {
+    if (this->workshops.size() > 0)
+        std::cout << "I am currently working" << std::endl;
+    else std::cout << "I can't currently working" << std::endl;
 }

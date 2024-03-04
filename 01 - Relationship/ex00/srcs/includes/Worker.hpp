@@ -33,9 +33,10 @@ class Worker {
         void    desequipTool();
         void    useTool();
 
+        void    work();
+
         void    addWorkshop(Workshop *workshop);
         void    deleteWorkshop(Workshop* workshop);
-
         bool    isInWorkshop(Workshop* workshop);
 
     private:

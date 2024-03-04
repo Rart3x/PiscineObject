@@ -57,6 +57,11 @@ int main (void) {
     std::cout << "<---------------------------------------->" << std::endl;
     workshop1->deleteWorker(&worker);
 
+    std::cout << "<---------------------------------------->" << std::endl;
+    worker.work();
+    workshop->addWorker(&worker);
+    worker.work();
+
     delete shovel;
     delete workshop;
     delete workshop1;
