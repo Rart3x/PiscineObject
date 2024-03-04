@@ -17,7 +17,7 @@ void    Workshop::addWorker(Worker* worker) {
 void Workshop::deleteWorker(Worker* worker) {
     if (isWorker(worker)) {
         if (worker) {
-            for (std::list<Worker *>::iterator it = workers.begin(); it != workers.end(); ++it) {
+            for (std::list<Worker *>::iterator it = this->workers.begin(); it != this->workers.end(); ++it) {
                 if (*it == worker) {
                     this->workers.erase(it);
                     std::cout << "Deleted a Worker" << std::endl;
@@ -36,4 +36,14 @@ bool    Workshop::isWorker(Worker* worker) {
             return true;
     }
     return false;
+}
+
+void    Workshop::executeWorkDay() {
+    size_t i = 0;
+
+    for (std::list<Worker *>::iterator it = this->workers.begin(); it != this->workers.end(); ++it) {
+        std::cout << "Workday for Worker : " << i << std::endl;
+        (*it)->work();
+        i++;
+    }
 }

@@ -62,6 +62,10 @@ int main (void) {
     workshop->addWorker(&worker);
     worker.work();
 
+    std::cout << "<---------------------------------------->" << std::endl;
+    workshop->addWorker(&worker1);
+    workshop->executeWorkDay();
+
     delete shovel;
     delete workshop;
     delete workshop1;

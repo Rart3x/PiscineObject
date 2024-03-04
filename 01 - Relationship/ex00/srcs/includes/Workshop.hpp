@@ -17,6 +17,8 @@ class Workshop {
 
         bool isWorker(Worker* worker);
 
+        void executeWorkDay();
+
     private:
         std::list<Worker *> workers;        
 };
