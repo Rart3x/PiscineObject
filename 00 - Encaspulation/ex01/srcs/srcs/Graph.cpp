@@ -15,6 +15,10 @@ void    Graph::addCoord(float x, float y) {
     this->size++;
 }
 
+void    Graph::addVec(Vector2& vec) {
+    this->addCoord(vec.x, vec.y);
+}
+
 void Graph::printCoord() const {
     for (int i = maxY; i >= 0; --i) {
         std::cout << i << " ";

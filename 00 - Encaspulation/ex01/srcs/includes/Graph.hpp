@@ -19,6 +19,7 @@ class Graph {
         ~Graph();
 
         void    addCoord(float x, float y);
+        void    addVec(Vector2& vec);
         void    printCoord(void) const;
 
     private:

@@ -32,16 +32,25 @@ int main(void) {
         Graph graph;
 
         try {
-            graph.addCoord(0, 0);
-            graph.addCoord(12, 12);
-            graph.printCoord();
-
             graph.addCoord(-1, -1);
             graph.printCoord();
         }
         catch (const std::exception& e) {
             std::cerr << e.what() << std::endl;
         }        
+    }
+
+    std::cout << std::endl;
+    std::cout << std::endl;
+
+    {
+        Graph graph;
+
+        Vector2 vec(2, 3);
+
+        graph.addVec(vec);
+        graph.addCoord(2, 3);
+        graph.printCoord();
     }
     return 0;
 }
