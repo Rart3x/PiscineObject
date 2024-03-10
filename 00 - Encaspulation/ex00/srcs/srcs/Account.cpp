@@ -3,10 +3,6 @@
 Account::Account(int id) : amount(0.0), id(id) {}
 Account::~Account() {}
 
-const Account&   Account::getAccount() const {
-    return *this;
-}
-
 double Account::getAmount() const {
     return this->amount;
 }

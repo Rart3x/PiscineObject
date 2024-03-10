@@ -12,8 +12,6 @@ class Account {
         double      getAmount(void) const;
         int         getId(void) const;
 
-        const Account&    getAccount(void) const;
-        
         // Setters functions //
 
         // Overloads functions //

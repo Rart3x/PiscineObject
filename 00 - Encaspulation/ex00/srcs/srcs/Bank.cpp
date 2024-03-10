@@ -41,8 +41,8 @@ bool    Bank::isClient(const int accountId) {
 
 void    Bank::loan(const double amount, const int accountId) {
     if (this->liquidity >= amount && amount > 0 && isClient(accountId)) {
-        this->loanAccount(amount, *this->clientAccounts[accountId]);
-        this->debitLiquidity(amount);
+        this->loanAccount(amount- (amount * 0.05), *this->clientAccounts[accountId]);
+        this->debitLiquidity(amount - (amount * 0.05));
     }
     else
         throw Exceptions::LoanRequestRefused();

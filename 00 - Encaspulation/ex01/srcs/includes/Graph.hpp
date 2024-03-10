@@ -5,11 +5,11 @@
 #include <iostream>
 #include <list>
 
-struct Coordinate {
+struct Vector2 {
     float   x;
     float   y;
 
-    Coordinate(float x_val, float y_val) : x(x_val), y(y_val) {}
+    Vector2(float x_val, float y_val) : x(x_val), y(y_val) {}
 };
 
 class Graph {
@@ -27,5 +27,5 @@ class Graph {
         float   maxX;
         float   maxY;
 
-        std::list<Coordinate>   coordinates;
+        std::list<Vector2>   coordinates;
 };
