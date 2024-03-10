@@ -3,12 +3,8 @@
 Account::Account(int id) : amount(0.0), id(id) {}
 Account::~Account() {}
 
-void    Account::creditAmount(const double amount) {
-    this->amount += amount;
-}
-
-void    Account::debitAmount(const double amount) {
-    this->amount -= amount;
+const Account&   Account::getAccount() const {
+    return *this;
 }
 
 double Account::getAmount() const {

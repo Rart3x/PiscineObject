@@ -14,11 +14,11 @@ Account    Bank::createAccount() {
 
 void    Bank::creditAccount(const double amount, Account &account) {
     this->creditLiquidity(amount * 0.05);
-    account.creditAmount(amount - (amount * 0.05));
+    account.amount += amount - (amount * 0.05);
 }
 
 void    Bank::debitAccount(const double amount, Account &account) {
-    account.debitAmount(amount);
+    account.amount -= amount;
 }
 
 void    Bank::deleteAccount(const int accountId) {
@@ -49,7 +49,7 @@ void    Bank::loan(const double amount, const int accountId) {
 }
 
 void    Bank::loanAccount(const double amount, Account &account) {
-    account.creditAmount(amount);
+    account.amount += amount;
 }
 
 std::map<const int, Account *>  Bank::getClientAccounts() const {

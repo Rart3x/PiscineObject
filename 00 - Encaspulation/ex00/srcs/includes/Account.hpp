@@ -9,8 +9,10 @@ class Account {
         ~Account();
 
         // Getters functions //
-        double    getAmount() const;
-        int       getId() const;
+        double      getAmount(void) const;
+        int         getId(void) const;
+
+        const Account&    getAccount(void) const;
         
         // Setters functions //
 
@@ -25,7 +27,4 @@ class Account {
         int     id;
 
         Account(int id);
-
-        void    creditAmount(const double amount);
-        void    debitAmount(const double amount);
 };
