@@ -13,12 +13,19 @@ Account    Bank::createAccount() {
 }
 
 void    Bank::creditAccount(const double amount, Account &account) {
-    this->creditLiquidity(amount * 0.05);
-    account.amount += amount - (amount * 0.05);
+    if (amount > 0) {
+        this->creditLiquidity(amount * 0.05);
+        account.amount += amount - (amount * 0.05);
+    } else
+        throw Exceptions::CreditNotPossible();
+
 }
 
 void    Bank::debitAccount(const double amount, Account &account) {
-    account.amount -= amount;
+    if (amount > 0)
+        account.amount -= amount;
+    else
+        throw Exceptions::DebitNotPossible();
 }
 
 void    Bank::deleteAccount(const int accountId) {
@@ -26,11 +33,17 @@ void    Bank::deleteAccount(const int accountId) {
 }
 
 void    Bank::creditLiquidity(const double amount) {
-    this->liquidity += amount;
+    if (amount > 0)
+        this->liquidity += amount;
+    else
+        throw Exceptions::CreditNotPossible();
 }
 
 void    Bank::debitLiquidity(const double amount) {
-    this->liquidity -= amount;
+    if (amount > 0)
+        this->liquidity -= amount;
+    else
+        throw Exceptions::DebitNotPossible();
 }
 
 bool    Bank::isClient(const int accountId) {
@@ -43,8 +56,7 @@ void    Bank::loan(const double amount, const int accountId) {
     if (this->liquidity >= amount && amount > 0 && isClient(accountId)) {
         this->loanAccount(amount- (amount * 0.05), *this->clientAccounts[accountId]);
         this->debitLiquidity(amount - (amount * 0.05));
-    }
-    else
+    } else
         throw Exceptions::LoanRequestRefused();
 }
 

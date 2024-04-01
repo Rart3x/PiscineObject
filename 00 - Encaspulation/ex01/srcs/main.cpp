@@ -25,8 +25,7 @@ int main(void) {
         graph.printCoord();
     }
 
-    std::cout << std::endl;
-    std::cout << std::endl;
+    std::cout << std::endl << std::endl;
 
     {
         Graph graph;
@@ -40,8 +39,7 @@ int main(void) {
         }        
     }
 
-    std::cout << std::endl;
-    std::cout << std::endl;
+    std::cout << std::endl << std::endl;
 
     {
         Graph graph;
