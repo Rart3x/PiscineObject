@@ -5,7 +5,10 @@ int main (void) {
 
 	Bank bank = Bank();
 
-	Account accountA = bank.createAccount();
+	bank.setLiquidity(1000);
+
+	bank.createAccount();
+	Account accountA = bank.getAccount(0);
 
 	// accountA.amount = 5; Modify Account object is FORBIDDEN outside from Bank object
 
@@ -30,26 +33,21 @@ int main (void) {
 
 	try {
 		bank.loan(500, accountA.getId());
-		std::cout << "Bank after Loan : " << std::endl;
-		std::cout << bank;
 	}
 	catch (const std::exception &e) {
 		std::cerr << e.what() << std::endl;
 	}
 
-	Account *accountCopy;
-	Account *accountCopy1;
-
 	std::cout << " ----- " << std::endl;
 
 	try {
-		accountCopy = bank[0];
+		Account accountCopy = bank[0];
 		std::cout << "COPY1" << std::endl;
-		std::cout << *accountCopy << std::endl;
+		std::cout << accountCopy << std::endl;
 
-		accountCopy1 = bank[5];
+		Account accountCopy1 = bank[5];
 		std::cout << "COPY2" << std::endl;
-		std::cout << *accountCopy << std::endl;
+		std::cout << accountCopy << std::endl;
 	}
 	catch (const std::exception &e) {
 		std::cerr << e.what() << std::endl;
