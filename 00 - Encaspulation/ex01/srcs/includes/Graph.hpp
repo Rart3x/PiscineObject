@@ -22,6 +22,8 @@ class Graph {
         void    addVec(Vector2& vec);
         void    printCoord(void) const;
 
+        const Vector2& operator [] (const int accountId);
+
     private:
         size_t  size;
 

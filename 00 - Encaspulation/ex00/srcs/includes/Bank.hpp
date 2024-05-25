@@ -14,7 +14,7 @@ class Bank {
 
         // Functions //
         void                                    addAccount(Account* account);
-        void                                    createAccount();
+        long                                    createAccount();
         void                                    creditAccount(const double amount, Account &account);
         void                                    debitAccount(const double amount, Account &account);
         void                                    deleteAccount(const int accountId);

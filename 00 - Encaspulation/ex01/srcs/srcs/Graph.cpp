@@ -1,7 +1,6 @@
 #include "../includes/Graph.hpp"
 
 Graph::Graph() : size(0), maxX(0), maxY(0) {}
-
 Graph::~Graph() {}
 
 void    Graph::addCoord(float x, float y) {
@@ -44,4 +43,14 @@ void Graph::printCoord() const {
         std::cout << j << " ";
 
     std::cout << std::endl;
+}
+
+const Vector2&    Graph::operator[](const int accountId) {
+    if (accountId >= 0 && accountId < (int)this->coordinates.size()) {
+        std::list<Vector2>::iterator it = this->coordinates.begin();
+        std::advance(it, accountId);
+        
+        return *it;
+    }
+    throw Exceptions::InexistantVec();
 }
