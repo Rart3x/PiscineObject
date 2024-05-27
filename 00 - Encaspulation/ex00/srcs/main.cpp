@@ -101,6 +101,8 @@ int main (void) {
 		std::cerr << e.what() << std::endl;
 	}
 
+	std::cout << std::endl;
+
 	bank.createAccount();
 	bank.createAccount();
 	bank.createAccount();

@@ -27,7 +27,7 @@ long    Bank::createAccount() {
 void    Bank::creditAccount(const double amount, Account &account) {
     if (amount > 0) {
         this->creditLiquidity(amount * 0.05);
-        account.amount += amount - (amount * 0.05);
+        this->clientAccounts[account.getId()]->amount += amount - (amount * 0.05);
         std::cout << "Bank just credited " << amount - (amount * 0.05) << " to account " << account.getId() << std::endl;
     } else
         throw Exceptions::CreditNotPossible();
@@ -35,7 +35,7 @@ void    Bank::creditAccount(const double amount, Account &account) {
 
 void    Bank::debitAccount(const double amount, Account &account) {
     if (amount > 0) {
-        account.amount -= amount;
+        this->clientAccounts[account.getId()]->amount -= amount;
         std::cout << "Bank just debited " << amount << " to account " << account.getId() << std::endl;
     }
     else
