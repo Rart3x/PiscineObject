@@ -19,9 +19,15 @@ int main (void) {
 	std::cout << bank << std::endl;
 	std::cout << std::endl;
 	
-	bank.deleteAccount(3);
-	bank.deleteAccount(2);
-	bank.deleteAccount(1);
+	try {
+		bank.deleteAccount(3);
+		bank.deleteAccount(2);
+		bank.deleteAccount(1);
+		bank.deleteAccount(7);
+	}
+	catch (const std::exception &e) {
+		std::cerr << e.what() << std::endl;
+	}
 	
 	std::cout << std::endl;
 	std::cout << bank << std::endl;
@@ -31,8 +37,6 @@ int main (void) {
 	std::cout << std::endl;
 	std::cout << bank << std::endl;
 
-	Account accountA = bank.getAccount(0);
-
 	try {
 		Account accountFalse = bank.getAccount(6);
 	}
@@ -41,8 +45,11 @@ int main (void) {
 	}
 
 	// accountA.amount = 5; Modify Account object is FORBIDDEN outside from Bank object
+	
+	Account accountA = bank.getAccount(0);
 
-	bank.addAccount(&accountA);
+	std::cout << "Bank ZOB: " << std::endl;
+	std::cout << bank << std::endl;
 
 	bank.creditAccount(100, accountA);
 	bank.debitAccount(125, accountA);
@@ -93,6 +100,12 @@ int main (void) {
 	catch (const std::exception &e) {
 		std::cerr << e.what() << std::endl;
 	}
+
+	bank.createAccount();
+	bank.createAccount();
+	bank.createAccount();
+	bank.createAccount();
+	bank.createAccount();
 
 	return (0);
 }

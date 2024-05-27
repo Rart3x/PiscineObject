@@ -2,21 +2,25 @@
 
 //-----------------------------------Constructor/Destructor-----------------------------------//
 Bank::Bank() : currentAccountId(0), liquidity(0) {}
-Bank::~Bank() {}
 
+Bank::~Bank() {
+    std::map<const int, Account *>::iterator it;
 
-//-----------------------------------Account functions-----------------------------------//
-void    Bank::addAccount(Account* account) {
-    this->clientAccounts[account->getId()] = account;
+    for (it = this->clientAccounts.begin(); it != this->clientAccounts.end(); it++) {
+        if (isClient(it->first)) {
+            delete(this->clientAccounts[it->first]);
+        }
+    }
 }
 
+//-----------------------------------Account functions-----------------------------------//
 long    Bank::createAccount() {
     this->currentAccountId++;
     
     Account *newAccount = new Account(this->currentAccountId - 1);
-    this->addAccount(newAccount);
+    this->clientAccounts[newAccount->getId()] = newAccount;
     std::cout << "Bank just created account " << this->currentAccountId - 1 << std::endl;
-    
+
     return (long)this->currentAccountId - 1;
 }
 
@@ -41,6 +45,7 @@ void    Bank::debitAccount(const double amount, Account &account) {
 void    Bank::deleteAccount(const int accountId) {
     if (isClient(accountId)) {
         std::cout << "Bank just deleted account " << this->clientAccounts[accountId]->getId() << std::endl;
+        delete(this->clientAccounts[accountId]);
         this->clientAccounts.erase(accountId);
     }
     else
