@@ -10,9 +10,10 @@ class Hammer : public Tool {
         Hammer();
         ~Hammer();
 
-        void    use();
+        void        use();
 
         void        printEquiped();
+        void        incrementUses();
 
         Worker*     getWorker();
         
@@ -21,5 +22,7 @@ class Hammer : public Tool {
 
     private:
         bool    isEquiped;
+        int     numberOfUses;
+
         Worker  *worker;
 };

@@ -1,6 +1,6 @@
 #include "../includes/Hammer.hpp"
 
-Hammer::Hammer() : Tool(), isEquiped(false), worker(NULL) {}
+Hammer::Hammer() : Tool(), isEquiped(false), numberOfUses(0), worker(NULL) {}
 Hammer::~Hammer() {}
 
 void    Hammer::use() {
@@ -12,6 +12,10 @@ void    Hammer::printEquiped() {
         std::cout << "I am equiped [HAMMER]" << std::endl;
     else
         std::cout << "I am not equiped [HAMMER]" << std::endl;
+}
+
+void    Hammer::incrementUses() {
+    this->numberOfUses++;
 }
 
 Worker* Hammer::getWorker() {

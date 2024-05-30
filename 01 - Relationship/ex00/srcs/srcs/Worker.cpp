@@ -29,8 +29,10 @@ void    Worker::desequipTool() {
 }
 
 void    Worker::useTool(){
-    if (this->tool)
+    if (this->tool) {
         this->tool->use();
+        this->tool->incrementUses();
+    }
     else
         std::cout << "Error: Cannot use inexistant tool" << std::endl;
 }
