@@ -41,19 +41,20 @@ void    Worker::useTool(){
 }
 
 void    Worker::addWorkshop(Workshop* workshop) {
-    if (!isInWorkshop(workshop)) {
-        if (workshop) {
+    if (workshop) {
+        if (!isInWorkshop(workshop)) {
             this->workshops.push_back(workshop);
             std::cout << "Worker has registered in Workshop" << std::endl;
         }
-        else std::cout << "Error: Cannot register in NULL workshop" << std::endl;
+        else std::cout << "Error: Already registered in this workshop" << std::endl;
     }
-    else std::cout << "Error: Already registered in this workshop" << std::endl;
+    else std::cout << "Error: Cannot register in NULL workshop" << std::endl;
+
 }
 
 void    Worker::deleteWorkshop(Workshop *workshop) {
-    if (isInWorkshop(workshop)) {
-        if (workshop) {
+    if (workshop) {
+        if (isInWorkshop(workshop)) {
             for (std::list<Workshop *>::iterator it = this->workshops.begin(); it != this->workshops.end(); ++it) {
                 if (*it == workshop) {
                     this->workshops.erase(it);
@@ -62,9 +63,9 @@ void    Worker::deleteWorkshop(Workshop *workshop) {
                 }
             }
         }
-        else std::cout << "Error: Cannot delete NULL workshop" << std::endl;
+        else std::cout << "Error: Worker has not registered in this workshop" << std::endl;\
     }
-    else std::cout << "Error: Worker has not registered in this workshop" << std::endl;
+    else std::cout << "Error: Cannot delete NULL workshop" << std::endl;
 }
 
 bool    Worker::isInWorkshop(Workshop* workshop) {

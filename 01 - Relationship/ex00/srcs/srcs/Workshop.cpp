@@ -6,11 +6,9 @@ Workshop::~Workshop() {}
 void    Workshop::addWorker(Worker* worker) {
     if (worker) {
         if (!isWorker(worker)) {
-            if (worker) {
-                this->workers.push_back(worker);
-                worker->addWorkshop(this);
-                std::cout << "Registered a Worker" << std::endl;
-            }
+            this->workers.push_back(worker);
+            worker->addWorkshop(this);
+            std::cout << "Registered a Worker" << std::endl;
         }
         else std::cout << "Already registered as worker" << std::endl;
     }
@@ -20,14 +18,12 @@ void    Workshop::addWorker(Worker* worker) {
 void Workshop::deleteWorker(Worker* worker) {
     if (worker) {
         if (isWorker(worker)) {
-            if (worker) {
-                for (std::list<Worker *>::iterator it = this->workers.begin(); it != this->workers.end(); ++it) {
-                    if (*it == worker) {
-                        this->workers.erase(it);
-                        std::cout << "Deleted a Worker" << std::endl;
-                        worker->deleteWorkshop(this);
-                        break;
-                    }
+            for (std::list<Worker *>::iterator it = this->workers.begin(); it != this->workers.end(); ++it) {
+                if (*it == worker) {
+                    this->workers.erase(it);
+                    std::cout << "Deleted a Worker" << std::endl;
+                    worker->deleteWorkshop(this);
+                    break;
                 }
             }
         }
