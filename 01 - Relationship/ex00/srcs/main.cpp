@@ -12,6 +12,7 @@ int main (void) {
     
     Worker  worker(5, 5, 100, 100000);
     Worker  worker1(5, 5, 100, 100000);
+    Worker  *worker2 = new Worker(5, 5, 100, 100000);
 
     Workshop *workshop = new Workshop();
     Workshop *workshop1 = new Workshop();
@@ -20,51 +21,89 @@ int main (void) {
 
     worker.equipTool(shovel);
     worker1.equipTool(shovel);
+    worker2->equipTool(shovel);
+    worker.equipTool(shovel);
 
+    delete worker2;
+
+    std::cout << std::endl;
     std::cout << "<---------------------------------------->" << std::endl;
+    std::cout << std::endl;
 
     worker.useTool();
     worker1.useTool();
 
+    std::cout << std::endl;
     std::cout << "<---------------------------------------->" << std::endl;
+    std::cout << std::endl;
 
     worker.desequipTool();
     worker1.desequipTool();
 
+    std::cout << std::endl;
     std::cout << "<---------------------------------------->" << std::endl;
+    std::cout << std::endl;
 
     shovel->use();
     tool->use();
 
+    std::cout << std::endl;
     std::cout << "<---------------------------------------->" << std::endl;
+    std::cout << std::endl;
 
     worker1.equipTool(tool);
     worker1.useTool();
 
+    std::cout << std::endl;
     std::cout << "<---------------------------------------->" << std::endl;
+    std::cout << std::endl;
 
     workshop->addWorker(&worker);
     workshop->addWorker(&worker);
 
+    std::cout << std::endl;
     std::cout << "<---------------------------------------->" << std::endl;
+    std::cout << std::endl;
 
     workshop1->addWorker(&worker);
 
+    std::cout << std::endl;
     std::cout << "<---------------------------------------->" << std::endl;
+    std::cout << std::endl;
+
     workshop->deleteWorker(&worker);
     workshop->deleteWorker(&worker);
 
+    std::cout << std::endl;
     std::cout << "<---------------------------------------->" << std::endl;
+    std::cout << std::endl;
+
     workshop1->deleteWorker(&worker);
 
+    std::cout << std::endl;
     std::cout << "<---------------------------------------->" << std::endl;
+    std::cout << std::endl;
+
     worker.work();
     workshop->addWorker(&worker);
+
+    std::cout << std::endl;
+    std::cout << "<---------------------------------------->" << std::endl;
+    std::cout << std::endl;
+
     workshop1->addWorker(&worker);
     worker.work();
 
+    std::cout << std::endl;
     std::cout << "<---------------------------------------->" << std::endl;
+    std::cout << std::endl;
+
     workshop->addWorker(&worker1);
+
+    std::cout << std::endl;
+    std::cout << "<---------------------------------------->" << std::endl;
+    std::cout << std::endl;
+
     workshop->executeWorkDay();
 
     delete hammer;

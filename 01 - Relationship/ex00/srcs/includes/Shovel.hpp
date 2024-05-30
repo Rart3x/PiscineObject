@@ -10,8 +10,9 @@ class Shovel : public Tool {
         Shovel();
         ~Shovel();
 
-        void    use();
+        void        use();
 
+        void        incrementUses();
         void        printEquiped();
 
         Worker*     getWorker();
@@ -20,6 +21,8 @@ class Shovel : public Tool {
         void        setEquiped();
 
     private:
-        bool    isEquiped;
+        bool            isEquiped;
+        unsigned int    numberOfUses;
+
         Worker  *worker;
 };

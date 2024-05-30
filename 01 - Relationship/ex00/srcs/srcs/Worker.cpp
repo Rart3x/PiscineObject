@@ -1,6 +1,6 @@
   #include "../includes/Worker.hpp"
 
-Worker::Worker(float x, float y, int level, int exp) : pos(x, y), stat(level, exp) {
+Worker::Worker(float x, float y, int level, int exp) : coordonnee(x, y), stat(level, exp) {
     this->tool = NULL;
 }
 
@@ -14,7 +14,7 @@ void    Worker::equipTool(Tool* tool) {
     this->tool->setWorker(this);
     this->tool->setEquiped();
 
-    std::cout << "Equiping a Tool" << std::endl;
+    std::cout << "Worker is equiping a Tool" << std::endl;
 }
 
 void    Worker::desequipTool() {
@@ -22,27 +22,27 @@ void    Worker::desequipTool() {
         this->tool->setEquiped();
         this->tool = NULL;
 
-        std::cout << "Desequiping a tool" << std::endl;
+        std::cout << "Worker is desequiping a tool" << std::endl;
     }
     else
-        std::cout << "Empty hands for DESEQUIP" << std::endl;
+        std::cout << "Error: Cannot desequip empty hands" << std::endl;
 }
 
 void    Worker::useTool(){
     if (this->tool)
         this->tool->use();
     else
-        std::cout << "Empty hands for USE" << std::endl;
+        std::cout << "Error: Cannot use inexistant tool" << std::endl;
 }
 
 void    Worker::addWorkshop(Workshop* workshop) {
     if (!isInWorkshop(workshop)) {
         if (workshop) {
             this->workshops.push_back(workshop);
-            std::cout << "Registered in Workshop" << std::endl;
+            std::cout << "Worker has registered in Workshop" << std::endl;
         }
     }
-    else std::cout << "Already registered in this workshop" << std::endl;
+    else std::cout << "Error: Already registered in this workshop" << std::endl;
 }
 
 void    Worker::deleteWorkshop(Workshop *workshop) {
@@ -57,7 +57,7 @@ void    Worker::deleteWorkshop(Workshop *workshop) {
             }
         }
     }
-    else std::cout << "Not registered in this workshop" << std::endl;
+    else std::cout << "Error: Worker has not registered in this workshop" << std::endl;
 }
 
 bool    Worker::isInWorkshop(Workshop* workshop) {

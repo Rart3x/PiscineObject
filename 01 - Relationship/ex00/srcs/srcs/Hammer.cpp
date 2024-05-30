@@ -4,7 +4,7 @@ Hammer::Hammer() : Tool(), isEquiped(false), worker(NULL) {}
 Hammer::~Hammer() {}
 
 void    Hammer::use() {
-    std::cout << " << Smash >> " << std::endl;
+    std::cout << " << Smash [HAMMER] >> " << std::endl;
 }
 
 void    Hammer::printEquiped() {

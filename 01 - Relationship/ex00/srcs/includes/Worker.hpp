@@ -40,9 +40,9 @@ class Worker {
         bool    isInWorkshop(Workshop* workshop);
 
     private:
-        Position        pos;
-        Tool            *tool;
-        Statistic       stat;
+        Position                coordonnee;
+        Statistic               stat;
+        Tool                    *tool;
 
-        std::list<Workshop *> workshops;
+        std::list<Workshop *>   workshops;
 };

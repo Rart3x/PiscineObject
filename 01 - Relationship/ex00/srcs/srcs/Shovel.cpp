@@ -1,10 +1,10 @@
 #include "../includes/Shovel.hpp"
 
-Shovel::Shovel() : Tool(), isEquiped(false), worker(NULL) {}
+Shovel::Shovel() : Tool(), isEquiped(false), numberOfUses(0), worker(NULL) {}
 Shovel::~Shovel() {}
 
 void    Shovel::use() {
-    std::cout << " << Digging >> " << std::endl;
+    std::cout << " << Digging [SHOVEL] >> " << std::endl;
 }
 
 void    Shovel::printEquiped() {
@@ -12,6 +12,10 @@ void    Shovel::printEquiped() {
         std::cout << "I am equiped [SHOVEL]" << std::endl;
     else
         std::cout << "I am not equiped [SHOVEL]" << std::endl;
+}
+
+void    Shovel::incrementUses() {
+    this->numberOfUses++;
 }
 
 Worker* Shovel::getWorker() {
