@@ -25,7 +25,9 @@ Worker* Hammer::getWorker() {
 }
 
 void    Hammer::setWorker(Worker *worker) {
-    this->worker = worker;
+    if (worker)
+        this->worker = worker;
+    else std::cout << "Error: Cannot set NULL worker" << std::endl;
 }
 
 void    Hammer::setEquiped() {

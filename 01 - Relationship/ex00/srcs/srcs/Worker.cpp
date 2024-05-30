@@ -7,14 +7,17 @@ Worker::Worker(float x, float y, int level, int exp) : coordonnee(x, y), stat(le
 Worker::~Worker() {} 
 
 void    Worker::equipTool(Tool* tool) {
-    if (tool->getWorker())
-        tool->getWorker()->desequipTool();
+    if (tool) {
+        if (tool->getWorker())
+            tool->getWorker()->desequipTool();
 
-    this->tool = tool;
-    this->tool->setWorker(this);
-    this->tool->setEquiped();
+        this->tool = tool;
+        this->tool->setWorker(this);
+        this->tool->setEquiped();
 
-    std::cout << "Worker is equiping a Tool" << std::endl;
+        std::cout << "Worker is equiping a Tool" << std::endl;
+    }
+    else std::cout << "Error: Cannot equip NULL tool" << std::endl;
 }
 
 void    Worker::desequipTool() {
@@ -43,6 +46,7 @@ void    Worker::addWorkshop(Workshop* workshop) {
             this->workshops.push_back(workshop);
             std::cout << "Worker has registered in Workshop" << std::endl;
         }
+        else std::cout << "Error: Cannot register in NULL workshop" << std::endl;
     }
     else std::cout << "Error: Already registered in this workshop" << std::endl;
 }
@@ -58,15 +62,20 @@ void    Worker::deleteWorkshop(Workshop *workshop) {
                 }
             }
         }
+        else std::cout << "Error: Cannot delete NULL workshop" << std::endl;
     }
     else std::cout << "Error: Worker has not registered in this workshop" << std::endl;
 }
 
 bool    Worker::isInWorkshop(Workshop* workshop) {
-    for (std::list<Workshop *>::iterator it = this->workshops.begin(); it != this->workshops.end(); ++it) {
-        if (*it == workshop)
-            return true;
+    if (workshop) {
+        for (std::list<Workshop *>::iterator it = this->workshops.begin(); it != this->workshops.end(); ++it) {
+            if (*it == workshop)
+                return true;
+        }
     }
+    else std::cout << "Error: Cannot check NULL workshop" << std::endl;
+
     return false;
 }
 
