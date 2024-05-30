@@ -2,25 +2,32 @@
 
 //-----------------------------------Constructor/Destructor-----------------------------------//
 Bank::Bank() : currentAccountId(0), liquidity(0) {}
-Bank::~Bank() {}
 
+Bank::~Bank() {
+    std::map<const int, Account *>::iterator it;
 
-//-----------------------------------Account functions-----------------------------------//
-void    Bank::addAccount(Account* account) {
-    this->clientAccounts[account->getId()] = account;
+    for (it = this->clientAccounts.begin(); it != this->clientAccounts.end(); it++) {
+        if (isClient(it->first)) {
+            delete(this->clientAccounts[it->first]);
+        }
+    }
 }
 
-void    Bank::createAccount() {
+//-----------------------------------Account functions-----------------------------------//
+long    Bank::createAccount() {
     this->currentAccountId++;
+    
     Account *newAccount = new Account(this->currentAccountId - 1);
-    this->addAccount(newAccount);
+    this->clientAccounts[newAccount->getId()] = newAccount;
     std::cout << "Bank just created account " << this->currentAccountId - 1 << std::endl;
+
+    return (long)this->currentAccountId - 1;
 }
 
 void    Bank::creditAccount(const double amount, Account &account) {
     if (amount > 0) {
         this->creditLiquidity(amount * 0.05);
-        account.amount += amount - (amount * 0.05);
+        this->clientAccounts[account.getId()]->amount += amount - (amount * 0.05);
         std::cout << "Bank just credited " << amount - (amount * 0.05) << " to account " << account.getId() << std::endl;
     } else
         throw Exceptions::CreditNotPossible();
@@ -28,7 +35,7 @@ void    Bank::creditAccount(const double amount, Account &account) {
 
 void    Bank::debitAccount(const double amount, Account &account) {
     if (amount > 0) {
-        account.amount -= amount;
+        this->clientAccounts[account.getId()]->amount -= amount;
         std::cout << "Bank just debited " << amount << " to account " << account.getId() << std::endl;
     }
     else
@@ -36,7 +43,13 @@ void    Bank::debitAccount(const double amount, Account &account) {
 }
 
 void    Bank::deleteAccount(const int accountId) {
-    this->clientAccounts.erase(accountId);
+    if (isClient(accountId)) {
+        std::cout << "Bank just deleted account " << this->clientAccounts[accountId]->getId() << std::endl;
+        delete(this->clientAccounts[accountId]);
+        this->clientAccounts.erase(accountId);
+    }
+    else
+        throw Exceptions::InexistantAccount();
 }
 
 //-----------------------------------Liquidity functions-----------------------------------//
@@ -108,12 +121,12 @@ std::ostream& operator<<(std::ostream& p_os, const Bank& p_bank) {
     std::map<const int, Account *>::iterator it;
 
     for (it = clientsAccounts.begin(); it != clientsAccounts.end(); ++it)
-        p_os << (it->second) << std::endl;
+        p_os << *(it->second) << std::endl;
 
     return p_os;
 }
 
-const Account&    Bank::operator[](const int accountId){
+const Account&    Bank::operator[](const int accountId) {
     if (isClient(accountId))
         return *this->clientAccounts[accountId];
     throw Exceptions::InexistantAccount();
