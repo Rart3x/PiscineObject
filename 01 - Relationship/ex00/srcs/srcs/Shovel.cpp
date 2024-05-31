@@ -3,7 +3,7 @@
 Shovel::Shovel() : Tool(), isEquiped(false), numberOfUses(0), str("Shovel"), worker(NULL) {}
 Shovel::~Shovel() {
     if (this->getWorker()) {
-        this->getWorker()->desequipTool();
+        this->getWorker()->unequipTool();
         this->worker = NULL;
     }
 }

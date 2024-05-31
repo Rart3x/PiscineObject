@@ -16,10 +16,10 @@ void    Worker::equipTool(Tool* tool) {
     if (tool) {
         if (tool->getWorker())
             if (tool->getWorker()->tool)
-                tool->getWorker()->desequipTool();
+                tool->getWorker()->unequipTool();
         
         if (this->tool)
-            this->desequipTool();
+            this->unequipTool();
 
         this->tool = tool;
         this->tool->setWorker(this);
@@ -30,25 +30,25 @@ void    Worker::equipTool(Tool* tool) {
     else std::cout << "Error: Cannot equip NULL tool" << std::endl;
 }
 
-void    Worker::desequipTool() {
+void    Worker::unequipTool() {
     if (this->tool) {
 
-        std::list<Workshop *>::iterator it;
+        // std::list<Workshop *>::iterator it;
 
-        for (it = this->workshops.begin(); it != this->workshops.end(); it++) {
-            if ((*it)->getToolNeeded() == this->tool->getStr()) {
-                (*it)->deleteWorker(this);
-            }
-        }
+        // for (it = this->workshops.begin(); it != this->workshops.end(); it++) {
+        //     if ((*it)->getToolNeeded() == this->tool->getStr()) {
+        //         (*it)->deleteWorker(this);
+        //     }
+        // }
 
         this->tool->setEquiped();
         this->tool->setWorker(NULL);
         this->tool = NULL;
 
-        std::cout << "Worker is desequiping a tool" << std::endl;
+        std::cout << "Worker is unequiping a tool" << std::endl;
     }
     else
-        std::cout << "Error: Cannot desequip empty hands" << std::endl;
+        std::cout << "Error: Cannot unequip empty hands" << std::endl;
 }
 
 void    Worker::useTool(){

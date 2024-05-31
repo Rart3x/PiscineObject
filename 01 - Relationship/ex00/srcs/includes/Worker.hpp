@@ -30,7 +30,7 @@ class Worker {
         ~Worker();
 
         void    equipTool(Tool* tool);
-        void    desequipTool();
+        void    unequipTool();
         void    useTool();
 
         void    work();

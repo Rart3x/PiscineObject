@@ -22,7 +22,7 @@ int main (void) {
 
     {
         std::cout << std::endl;
-        std::cout << "<-------------------Equiping/Desequiping--------------------->" << std::endl;
+        std::cout << "<-------------------Equiping/unequiping--------------------->" << std::endl;
         std::cout << std::endl;
 
         worker.equipTool(shovel);
@@ -63,7 +63,7 @@ int main (void) {
 
         std::cout << std::endl;
         
-        worker1.desequipTool();
+        worker1.unequipTool();
     }
 
     {
@@ -156,8 +156,12 @@ int main (void) {
         worker2->work();
         worker3->work();
 
+        std::cout << std::endl;
+
         // worker2->deleteWorkshop(workshop1);
-        worker3->deleteWorkshop(workshop1);
+        // worker3->deleteWorkshop(workshop1);
+        // workshop->deleteWorker(worker2);
+        // workshop->deleteWorker(worker3);
     }
 
     {
