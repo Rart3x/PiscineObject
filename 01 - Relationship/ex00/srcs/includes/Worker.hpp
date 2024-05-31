@@ -38,6 +38,9 @@ class Worker {
         void    addWorkshop(Workshop *workshop);
         void    deleteWorkshop(Workshop* workshop);
         bool    isInWorkshop(Workshop* workshop);
+        bool    isEquiped() const;
+
+        const Tool* getEquipedTool() const;
 
     private:
         Position                coordonnee;

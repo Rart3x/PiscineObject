@@ -1,15 +1,25 @@
   #include "../includes/Worker.hpp"
 
-Worker::Worker(float x, float y, int level, int exp) : coordonnee(x, y), stat(level, exp) {
+Worker::Worker(float x, float y, int level, int exp) : coordonnee(Position(x, y)), stat(Statistic(level, exp)) {
     this->tool = NULL;
 }
 
-Worker::~Worker() {} 
+Worker::~Worker() {
+    if (this->tool) {
+        this->tool->setWorker(NULL);
+        this->tool->setEquiped();
+        this->tool = NULL;
+    }
+}
 
 void    Worker::equipTool(Tool* tool) {
     if (tool) {
         if (tool->getWorker())
-            tool->getWorker()->desequipTool();
+            if (tool->getWorker()->tool)
+                tool->getWorker()->desequipTool();
+        
+        if (this->tool)
+            this->desequipTool();
 
         this->tool = tool;
         this->tool->setWorker(this);
@@ -22,7 +32,17 @@ void    Worker::equipTool(Tool* tool) {
 
 void    Worker::desequipTool() {
     if (this->tool) {
+
+        std::list<Workshop *>::iterator it;
+
+        for (it = this->workshops.begin(); it != this->workshops.end(); it++) {
+            if ((*it)->getToolNeeded() == this->tool->getStr()) {
+                (*it)->deleteWorker(this);
+            }
+        }
+
         this->tool->setEquiped();
+        this->tool->setWorker(NULL);
         this->tool = NULL;
 
         std::cout << "Worker is desequiping a tool" << std::endl;
@@ -32,10 +52,8 @@ void    Worker::desequipTool() {
 }
 
 void    Worker::useTool(){
-    if (this->tool) {
+    if (this->tool)
         this->tool->use();
-        this->tool->incrementUses();
-    }
     else
         std::cout << "Error: Cannot use inexistant tool" << std::endl;
 }
@@ -68,6 +86,12 @@ void    Worker::deleteWorkshop(Workshop *workshop) {
     else std::cout << "Error: Cannot delete NULL workshop" << std::endl;
 }
 
+bool    Worker::isEquiped() const {
+    if (this->tool)
+        return true;
+    return false;
+}
+
 bool    Worker::isInWorkshop(Workshop* workshop) {
     if (workshop) {
         for (std::list<Workshop *>::iterator it = this->workshops.begin(); it != this->workshops.end(); ++it) {
@@ -84,4 +108,8 @@ void    Worker::work() {
     if (this->workshops.size() > 0)
         std::cout << "I am currently working" << std::endl;
     else std::cout << "I can't currently working" << std::endl;
+}
+
+const Tool* Worker::getEquipedTool() const {
+    return this->tool;
 }

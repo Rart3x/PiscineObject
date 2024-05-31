@@ -13,16 +13,18 @@ class Hammer : public Tool {
         void        use();
 
         void        printEquiped();
-        void        incrementUses();
 
+        std::string getStr() const;
         Worker*     getWorker();
         
         void        setWorker(Worker* worker);
         void        setEquiped();
 
     private:
-        bool    isEquiped;
-        int     numberOfUses;
+        bool        isEquiped;
+        int         numberOfUses;
+
+        std::string str;
 
         Worker  *worker;
 };

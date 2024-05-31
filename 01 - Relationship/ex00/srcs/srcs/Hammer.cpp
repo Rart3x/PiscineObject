@@ -1,10 +1,16 @@
 #include "../includes/Hammer.hpp"
 
-Hammer::Hammer() : Tool(), isEquiped(false), numberOfUses(0), worker(NULL) {}
-Hammer::~Hammer() {}
+Hammer::Hammer() : Tool(), isEquiped(false), numberOfUses(0), str("Hammer"), worker(NULL) {}
+Hammer::~Hammer() {
+    if (this->getWorker()) {
+        this->getWorker()->desequipTool();
+        this->worker = NULL;
+    }
+}
 
 void    Hammer::use() {
     std::cout << " << Smash [HAMMER] >> " << std::endl;
+    this->numberOfUses++;
 }
 
 void    Hammer::printEquiped() {
@@ -14,8 +20,8 @@ void    Hammer::printEquiped() {
         std::cout << "I am not equiped [HAMMER]" << std::endl;
 }
 
-void    Hammer::incrementUses() {
-    this->numberOfUses++;
+std::string Hammer::getStr() const {
+    return this->str;
 }
 
 Worker* Hammer::getWorker() {
@@ -25,9 +31,7 @@ Worker* Hammer::getWorker() {
 }
 
 void    Hammer::setWorker(Worker *worker) {
-    if (worker)
-        this->worker = worker;
-    else std::cout << "Error: Cannot set NULL worker" << std::endl;
+    this->worker = worker;
 }
 
 void    Hammer::setEquiped() {

@@ -12,17 +12,19 @@ class Shovel : public Tool {
 
         void        use();
 
-        void        incrementUses();
         void        printEquiped();
 
+        std::string getStr() const;
         Worker*     getWorker();
-        
+
         void        setWorker(Worker* worker);
         void        setEquiped();
 
     private:
         bool            isEquiped;
         unsigned int    numberOfUses;
+
+        std::string     str;
 
         Worker  *worker;
 };

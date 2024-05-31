@@ -14,8 +14,8 @@ class Tool {
 
         virtual void        use() = 0;
                 
+        virtual std::string getStr() const = 0;        
         virtual Worker*     getWorker() = 0;
-        virtual void        incrementUses() = 0;
 
         virtual void        setWorker(Worker* worker) = 0;
         virtual void        setEquiped() = 0;

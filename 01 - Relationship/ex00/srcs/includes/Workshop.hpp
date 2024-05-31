@@ -9,7 +9,7 @@ class Worker;
 
 class Workshop {
     public:
-        Workshop();
+        Workshop(std::string toolNeeded);
         ~Workshop();
 
         void addWorker(Worker* worker);
@@ -19,6 +19,9 @@ class Workshop {
 
         void executeWorkDay();
 
+        std::string getToolNeeded() const;
+
     private:
-        std::list<Worker *> workers;        
+        std::list<Worker *> workers;
+        std::string toolNeeded;
 };

@@ -1,10 +1,16 @@
 #include "../includes/Shovel.hpp"
 
-Shovel::Shovel() : Tool(), isEquiped(false), numberOfUses(0), worker(NULL) {}
-Shovel::~Shovel() {}
+Shovel::Shovel() : Tool(), isEquiped(false), numberOfUses(0), str("Shovel"), worker(NULL) {}
+Shovel::~Shovel() {
+    if (this->getWorker()) {
+        this->getWorker()->desequipTool();
+        this->worker = NULL;
+    }
+}
 
 void    Shovel::use() {
     std::cout << " << Digging [SHOVEL] >> " << std::endl;
+    this->numberOfUses++;
 }
 
 void    Shovel::printEquiped() {
@@ -14,8 +20,8 @@ void    Shovel::printEquiped() {
         std::cout << "I am not equiped [SHOVEL]" << std::endl;
 }
 
-void    Shovel::incrementUses() {
-    this->numberOfUses++;
+std::string Shovel::getStr() const {
+    return this->str;
 }
 
 Worker* Shovel::getWorker() {
@@ -25,9 +31,7 @@ Worker* Shovel::getWorker() {
 }
 
 void    Shovel::setWorker(Worker *worker) {
-    if (worker)
-        this->worker = worker;
-    else std::cout << "Error: Cannot set NULL worker" << std::endl;
+    this->worker = worker;
 }
 
 void    Shovel::setEquiped() {

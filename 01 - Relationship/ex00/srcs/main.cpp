@@ -13,101 +13,172 @@ int main (void) {
     Worker  worker(5, 5, 100, 100000);
     Worker  worker1(5, 5, 100, 100000);
     Worker  *worker2 = new Worker(5, 5, 100, 100000);
+    Worker  *worker3 = new Worker(5, 5, 100, 100000);
 
-    Workshop *workshop = new Workshop();
-    Workshop *workshop1 = new Workshop();
+    Workshop *workshop = new Workshop("Hammer");
+    Workshop *workshop1 = new Workshop("Shovel");
 
     tool = hammer;
 
-    worker.equipTool(shovel);
-    worker1.equipTool(shovel);
-    worker2->equipTool(shovel);
-    worker.equipTool(shovel);
+    {
+        std::cout << std::endl;
+        std::cout << "<-------------------Equiping/Desequiping--------------------->" << std::endl;
+        std::cout << std::endl;
 
-    delete worker2;
+        worker.equipTool(shovel);
+        worker1.equipTool(hammer);
 
-    std::cout << std::endl;
-    std::cout << "<---------------------------------------->" << std::endl;
-    std::cout << std::endl;
+        std::cout << std::endl;
 
-    worker.useTool();
-    worker1.useTool();
+        shovel->printEquiped();
+        hammer->printEquiped();
 
-    std::cout << std::endl;
-    std::cout << "<---------------------------------------->" << std::endl;
-    std::cout << std::endl;
+        std::cout << std::endl;
 
-    worker.desequipTool();
-    worker1.desequipTool();
+        worker.useTool();
+        worker1.useTool();
 
-    std::cout << std::endl;
-    std::cout << "<---------------------------------------->" << std::endl;
-    std::cout << std::endl;
+        std::cout << std::endl;
 
-    shovel->use();
-    tool->use();
+        worker.equipTool(hammer);
+        worker1.equipTool(shovel);
+        
+        std::cout << std::endl;
 
-    std::cout << std::endl;
-    std::cout << "<---------------------------------------->" << std::endl;
-    std::cout << std::endl;
+        shovel->printEquiped();
+        hammer->printEquiped();
 
-    worker1.equipTool(tool);
-    worker1.useTool();
+        std::cout << std::endl;
 
-    std::cout << std::endl;
-    std::cout << "<---------------------------------------->" << std::endl;
-    std::cout << std::endl;
+        worker.useTool();
+        worker1.useTool();
 
-    workshop->addWorker(&worker);
-    workshop->addWorker(&worker);
+        std::cout << std::endl;
 
-    std::cout << std::endl;
-    std::cout << "<---------------------------------------->" << std::endl;
-    std::cout << std::endl;
+        worker1.equipTool(tool);
 
-    workshop1->addWorker(&worker);
+        std::cout << std::endl;
 
-    std::cout << std::endl;
-    std::cout << "<---------------------------------------->" << std::endl;
-    std::cout << std::endl;
+        worker1.useTool();
 
-    workshop->deleteWorker(&worker);
-    workshop->deleteWorker(&worker);
+        std::cout << std::endl;
+        
+        worker1.desequipTool();
+    }
 
-    std::cout << std::endl;
-    std::cout << "<---------------------------------------->" << std::endl;
-    std::cout << std::endl;
+    {
+        std::cout << std::endl;
+        std::cout << "<-------------------NULL/Empty Checks--------------------->" << std::endl;
+        std::cout << std::endl;
 
-    workshop1->deleteWorker(&worker);
+        worker.useTool();
+        worker1.useTool();
+        
+        std::cout << std::endl;
 
-    std::cout << std::endl;
-    std::cout << "<---------------------------------------->" << std::endl;
-    std::cout << std::endl;
+        worker.equipTool(NULL);
+        worker1.equipTool(NULL);
 
-    worker.work();
-    workshop->addWorker(&worker);
+        std::cout << std::endl;
 
-    std::cout << std::endl;
-    std::cout << "<---------------------------------------->" << std::endl;
-    std::cout << std::endl;
+        workshop->addWorker(NULL);
+        workshop1->addWorker(NULL);
 
-    workshop1->addWorker(&worker);
-    worker.work();
+        std::cout << std::endl;
 
-    std::cout << std::endl;
-    std::cout << "<---------------------------------------->" << std::endl;
-    std::cout << std::endl;
+        workshop->deleteWorker(NULL);
+        workshop1->deleteWorker(NULL);
 
-    workshop->addWorker(&worker1);
+        std::cout << std::endl;
 
-    std::cout << std::endl;
-    std::cout << "<---------------------------------------->" << std::endl;
-    std::cout << std::endl;
+        workshop->isWorker(NULL);
+        workshop1->isWorker(NULL);
 
-    workshop->executeWorkDay();
+        workshop->executeWorkDay();
+    }
 
-    delete hammer;
-    delete shovel;
-    delete workshop;
-    delete workshop1;
+    {
+        std::cout << std::endl;
+        std::cout << "<-------------------Workshops--------------------->" << std::endl;
+        std::cout << std::endl;
+
+        workshop->addWorker(worker2);
+        workshop->addWorker(worker3);
+
+        std::cout << std::endl;
+
+        worker2->equipTool(shovel);
+        worker3->equipTool(hammer);
+
+        std::cout << std::endl;
+
+        workshop->addWorker(worker2);
+        workshop->addWorker(worker3);
+
+        std::cout << std::endl;
+
+        workshop->isWorker(worker2);
+        workshop->isWorker(worker3);
+
+        std::cout << std::endl;
+
+        workshop->deleteWorker(worker2);
+        workshop->deleteWorker(worker2);
+
+        std::cout << std::endl;
+
+        worker2->work();
+        worker3->work();
+
+        std::cout << std::endl;
+
+        workshop->isWorker(worker2);
+        workshop->isWorker(worker3);
+
+        std::cout << std::endl;
+
+        workshop->addWorker(worker2);
+        workshop->addWorker(worker2);
+        workshop->addWorker(worker2);
+        workshop->addWorker(worker2);
+
+        std::cout << std::endl;
+
+        workshop->executeWorkDay();
+
+        std::cout << std::endl;
+
+        workshop1->addWorker(worker2);
+        workshop1->addWorker(worker3);
+
+        std::cout << std::endl;
+
+        worker2->work();
+        worker3->work();
+
+        // worker2->deleteWorkshop(workshop1);
+        worker3->deleteWorkshop(workshop1);
+    }
+
+    {
+        std::cout << std::endl;
+        std::cout << "<-------------------Deleting/Destructors--------------------->" << std::endl;
+        std::cout << std::endl;
+
+        worker2->equipTool(hammer);
+
+        std::cout << std::endl;
+
+        delete worker2;
+
+        hammer->printEquiped();
+
+        std::cout << std::endl;
+
+        delete hammer;
+        delete shovel;
+        delete workshop;
+        delete workshop1;
+        delete worker3;
+    }
 }

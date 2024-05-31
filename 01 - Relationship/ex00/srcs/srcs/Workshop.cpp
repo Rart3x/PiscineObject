@@ -1,14 +1,17 @@
 #include "../includes/Workshop.hpp"
 
-Workshop::Workshop() {}
+Workshop::Workshop(std::string toolNeeded) : toolNeeded(toolNeeded) {}
 Workshop::~Workshop() {}
 
 void    Workshop::addWorker(Worker* worker) {
     if (worker) {
         if (!isWorker(worker)) {
-            this->workers.push_back(worker);
-            worker->addWorkshop(this);
-            std::cout << "Registered a Worker" << std::endl;
+            if (worker->getEquipedTool() && worker->getEquipedTool()->getStr() == this->toolNeeded) {
+                this->workers.push_back(worker);
+                worker->addWorkshop(this);
+                std::cout << "Registered a Worker" << std::endl;
+            }
+            else std::cout << "Worker has not good Tool" << std::endl;            
         }
         else std::cout << "Already registered as worker" << std::endl;
     }
@@ -18,11 +21,11 @@ void    Workshop::addWorker(Worker* worker) {
 void Workshop::deleteWorker(Worker* worker) {
     if (worker) {
         if (isWorker(worker)) {
-            for (std::list<Worker *>::iterator it = this->workers.begin(); it != this->workers.end(); ++it) {
+            for (std::list<Worker *>::iterator it = this->workers.begin(); it != this->workers.end(); it++) {
                 if (*it == worker) {
                     this->workers.erase(it);
-                    std::cout << "Deleted a Worker" << std::endl;
                     worker->deleteWorkshop(this);
+                    std::cout << "Deleted a Worker" << std::endl;
                     break;
                 }
             }
@@ -35,12 +38,15 @@ void Workshop::deleteWorker(Worker* worker) {
 bool    Workshop::isWorker(Worker* worker) {
     if (worker) {
         for (std::list<Worker *>::iterator it = this->workers.begin(); it != this->workers.end(); ++it) {
-            if (*it == worker)
+            if (*it == worker) {
+                std::cout << "This worker is IN the workshop" << std::endl;
                 return true;
+            }
         }
     }
     else std::cout << "Error: Cannot check NULL worker" << std::endl;
     
+    std::cout << "This worker is NOT in the workshop" << std::endl;
     return false;
 }
 
@@ -52,4 +58,8 @@ void    Workshop::executeWorkDay() {
         (*it)->work();
         i++;
     }
+}
+
+std::string Workshop::getToolNeeded() const {
+    return this->toolNeeded;
 }
