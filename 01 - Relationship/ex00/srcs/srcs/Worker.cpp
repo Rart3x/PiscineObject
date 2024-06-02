@@ -34,11 +34,18 @@ void    Worker::unequipTool() {
     if (this->tool) {
 
         std::list<Workshop *>::iterator it;
+        std::list<Workshop *>::iterator ite;
+        std::list<Workshop *> tmp;
 
         for (it = this->workshops.begin(); it != this->workshops.end(); it++) {
             if ((*it)->getToolNeeded() == this->tool->getStr()) {
-                (*it)->deleteWorker(this);
-                break;
+                tmp.push_back(*it);
+            }
+        }
+
+        for (ite = tmp.begin(); ite != tmp.end(); ite++) {
+            if ((*ite)->getToolNeeded() == this->tool->getStr()) {
+                (*ite)->deleteWorker(this);
             }
         }
 

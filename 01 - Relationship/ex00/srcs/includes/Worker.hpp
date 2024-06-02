@@ -29,18 +29,19 @@ class Worker {
         Worker(float x, float y, int level, int exp);
         ~Worker();
 
-        void    equipTool(Tool* tool);
-        void    unequipTool();
-        void    useTool();
+        void        equipTool(Tool* tool);
+        void        unequipTool();
+        void        useTool();
 
-        void    work();
+        void        work();
 
-        void    addWorkshop(Workshop *workshop);
-        void    deleteWorkshop(Workshop* workshop);
-        bool    isInWorkshop(Workshop* workshop);
-        bool    isEquiped() const;
+        void        addWorkshop(Workshop *workshop);
+        void        deleteWorkshop(Workshop* workshop);
+        bool        isInWorkshop(Workshop* workshop);
+        bool        isEquiped() const;
 
         const Tool* getEquipedTool() const;
+        
 
     private:
         Position                coordonnee;

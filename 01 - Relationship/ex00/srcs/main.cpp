@@ -158,9 +158,19 @@ int main (void) {
 
         std::cout << std::endl;
 
+        Workshop *workshop2 = new Workshop("Shovel");
+        workshop2->executeWorkDay();
+
+        
+        workshop2->addWorker(worker2);
+
         worker2->unequipTool();
 
         shovel->printEquiped();
+
+        workshop2->executeWorkDay();
+
+        delete workshop2;
 
         // worker2->deleteWorkshop(workshop1);
         // worker3->deleteWorkshop(workshop1);
