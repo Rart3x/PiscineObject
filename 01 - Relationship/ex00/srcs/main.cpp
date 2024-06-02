@@ -158,6 +158,10 @@ int main (void) {
 
         std::cout << std::endl;
 
+        worker2->unequipTool();
+
+        shovel->printEquiped();
+
         // worker2->deleteWorkshop(workshop1);
         // worker3->deleteWorkshop(workshop1);
         // workshop->deleteWorker(worker2);

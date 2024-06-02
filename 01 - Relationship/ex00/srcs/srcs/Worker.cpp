@@ -33,13 +33,14 @@ void    Worker::equipTool(Tool* tool) {
 void    Worker::unequipTool() {
     if (this->tool) {
 
-        // std::list<Workshop *>::iterator it;
+        std::list<Workshop *>::iterator it;
 
-        // for (it = this->workshops.begin(); it != this->workshops.end(); it++) {
-        //     if ((*it)->getToolNeeded() == this->tool->getStr()) {
-        //         (*it)->deleteWorker(this);
-        //     }
-        // }
+        for (it = this->workshops.begin(); it != this->workshops.end(); it++) {
+            if ((*it)->getToolNeeded() == this->tool->getStr()) {
+                (*it)->deleteWorker(this);
+                break;
+            }
+        }
 
         this->tool->setEquiped();
         this->tool->setWorker(NULL);
