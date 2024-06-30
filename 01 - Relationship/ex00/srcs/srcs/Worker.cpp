@@ -4,15 +4,6 @@ Worker::Worker(float x, float y, int level, int exp) : coordonnee(Position(x, y)
 }
 
 Worker::~Worker() {
-    // for (std::map<std::string, Tool *>::iterator it = this->tools.begin(); it != this->tools.end(); it++) {
-    //     it->second->setWorker(NULL);
-    //     it->second->setEquiped();
-    // }
-    // this->tools.clear();
-    
-    // for (std::list<Workshop *>::iterator it = this->workshops.begin(); it != this->workshops.end(); it++) {
-    //     (*it)->deleteWorker(this);
-    // }
 }
 
 void   Worker::AmIEquiped(Tool *tool) {

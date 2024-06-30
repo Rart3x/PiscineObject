@@ -3,10 +3,6 @@
 Workshop::Workshop(std::string toolNeeded) : toolNeeded(toolNeeded) {}
 
 Workshop::~Workshop() {
-    // for (std::list<Worker *>::iterator it = workers.begin(); it != workers.end(); it++) {
-    //     (*it)->deleteWorkshop(this);
-    // }
-    // workers.clear();
 }
 
 void Workshop::addW(Worker *worker) {

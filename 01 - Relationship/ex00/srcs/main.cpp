@@ -126,9 +126,7 @@ int main (void) {
         std::cout << std::endl;
 
         worker.equipTool(shovel);
-        
-        std::cout << "TEST" << std::endl;
-
+    
         workshop1.addWorker(&worker);
         workshop1.addWorker(&worker);
 
@@ -174,6 +172,12 @@ int main (void) {
 
         worker2->equipTool(hammer);
         worker3->equipTool(shovel);
+        worker3->equipTool(hammer1);
+
+        std::cout << std::endl;
+
+        workshop.addWorker(worker2);
+        workshop.addWorker(worker3);
 
         std::cout << std::endl;
 
