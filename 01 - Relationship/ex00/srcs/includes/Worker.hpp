@@ -34,10 +34,13 @@ class Worker {
         void equipTool(Tool *tool);
         void unequipTool(Tool *tool);
 
+        void addW(Workshop *workshop);
         void addWorkshop(Workshop *workshop);
         void deleteWorkshop(Workshop *workshop);
+        void deleteW(Workshop *workshop);
 
         bool isWorkerHaveTool(const std::string &tool) const;
+        bool isWorkshopIsInWorker(Workshop *workshop) const;
         void work() const;
 
         std::map<std::string, Tool *> getTools() const;

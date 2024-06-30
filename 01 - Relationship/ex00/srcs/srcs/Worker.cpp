@@ -25,6 +25,13 @@ void   Worker::AmIEquiped(Tool *tool) {
     std::cout << "I am not equiped by: " << tool->getStr() << std::endl;
 }
 
+void    Worker::addW(Workshop *workshop) {
+    if (workshop) {
+        this->workshops.push_back(workshop);
+        std::cout << "Workshop added" << std::endl;
+    }
+}
+
 void   Worker::addWorkshop(Workshop *workshop) {
     if (workshop) {
         if (this->isWorkerHaveTool(workshop->getToolNeeded()) == false) {
@@ -32,27 +39,32 @@ void   Worker::addWorkshop(Workshop *workshop) {
             return ;
         }
 
-        if (workshop->isWorkerInWorkshop(this)) {
+        if (this->isWorkshopIsInWorker(workshop)) {
             std::cout << "Worker already in the workshop" << std::endl;
             return ;
         }
-        this->workshops.push_back(workshop);
-        workshop->addWorker(this);
-        std::cout << "Workshop added" << std::endl;
+        this->addW(workshop);
+        workshop->addW(this);
     }
     else 
         std::cout << "Workshop is NULL" << std::endl;
 }
 
+void    Worker::deleteW(Workshop *workshop) {
+    if (workshop) {
+        this->workshops.remove(workshop);
+        std::cout << "Workshop removed from the worker" << std::endl;
+    }
+}
+
 void   Worker::deleteWorkshop(Workshop *workshop) {
     if (workshop) {
-        if (!workshop->isWorkerInWorkshop(this)) {
+        if (!this->isWorkshopIsInWorker(workshop)) {
             std::cout << "Worker not in the workshop" << std::endl;
             return ;
         }
-        workshop->deleteWorker(this);
-        this->workshops.remove(workshop);
-        std::cout << "Workshop removed" << std::endl;
+        this->deleteW(workshop);
+        workshop->deleteW(this);
     }
     else 
         std::cout << "Workshop is NULL" << std::endl;
@@ -85,17 +97,16 @@ void   Worker::unequipTool(Tool *tool) {
             tool->setEquiped();
             this->tools.erase(tool->getStr());
 
-        if (workshops.size() > 0) {
-            for (std::list<Workshop*>::iterator it = workshops.begin(); it!= workshops.end(); ) {
-                if ((*it)->getToolNeeded() == tool->getStr()) {
-                    (*it)->deleteWorker(this);
-                    it = workshops.erase(it);
-                    std::cout << "Worker removed from the workshop" << std::endl;
-                } else
-                    ++it;
-            }
-        }
+            if (workshops.size() > 0) {
+                for (std::list<Workshop*>::iterator it = workshops.begin(); it!= workshops.end(); ) {
+                    if ((*it)->getToolNeeded() == tool->getStr()) {
+                        (*it)->deleteW(this);
+                        it = workshops.erase(it);
+                    } else
+                        ++it;
+                }
 
+            }
             std::cout << "Tool unequiped: " << tool->getStr() << std::endl;
         }
         else 
@@ -115,6 +126,14 @@ void    Worker::work() const {
 bool Worker::isWorkerHaveTool(const std::string &tool) const {
     if (this->tools.find(tool) != this->tools.end())
         return true;
+    return false;
+}
+
+bool Worker::isWorkshopIsInWorker(Workshop *workshop) const {
+    for (std::list<Workshop *>::const_iterator it = this->workshops.begin(); it != this->workshops.end(); it++) {
+        if (*it == workshop)
+            return true;
+    }
     return false;
 }
 

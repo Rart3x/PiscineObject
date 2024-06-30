@@ -12,8 +12,10 @@ class Workshop {
         Workshop(std::string toolNeeded);
         ~Workshop();
 
+        void addW(Worker *worker);
         void addWorker(Worker* worker);
         void deleteWorker(Worker* worker);
+        void deleteW(Worker *worker);
 
         void executeWorkDay();
         bool isWorkerInWorkshop(Worker* worker);
