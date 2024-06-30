@@ -2,10 +2,8 @@
 
 Shovel::Shovel() : Tool(), isEquiped(false), numberOfUses(0), str("Shovel"), worker(NULL) {}
 Shovel::~Shovel() {
-    if (this->getWorker()) {
-        this->getWorker()->unequipTool();
+    if (this->getWorker())
         this->worker = NULL;
-    }
 }
 
 void    Shovel::use() {
@@ -18,6 +16,10 @@ void    Shovel::printEquiped() {
         std::cout << "I am equiped [SHOVEL]" << std::endl;
     else
         std::cout << "I am not equiped [SHOVEL]" << std::endl;
+}
+
+void   Shovel::printNumberOfUses() {
+    std::cout << "Number of uses [SHOVEL]: " << this->numberOfUses << std::endl;
 }
 
 std::string Shovel::getStr() const {

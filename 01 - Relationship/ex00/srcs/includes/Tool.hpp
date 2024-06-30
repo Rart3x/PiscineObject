@@ -13,7 +13,10 @@ class Tool {
         virtual ~Tool();
 
         virtual void        use() = 0;
-                
+
+        virtual void        printEquiped() = 0;
+        virtual void        printNumberOfUses() = 0;
+
         virtual std::string getStr() const = 0;        
         virtual Worker*     getWorker() = 0;
 
@@ -21,4 +24,5 @@ class Tool {
         virtual void        setEquiped() = 0;
 
     private:
+        unsigned int        numberOfUses;
 };

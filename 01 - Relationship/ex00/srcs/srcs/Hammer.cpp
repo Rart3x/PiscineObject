@@ -2,10 +2,8 @@
 
 Hammer::Hammer() : Tool(), isEquiped(false), numberOfUses(0), str("Hammer"), worker(NULL) {}
 Hammer::~Hammer() {
-    if (this->getWorker()) {
-        this->getWorker()->unequipTool();
+    if (this->getWorker())
         this->worker = NULL;
-    }
 }
 
 void    Hammer::use() {
@@ -18,6 +16,10 @@ void    Hammer::printEquiped() {
         std::cout << "I am equiped [HAMMER]" << std::endl;
     else
         std::cout << "I am not equiped [HAMMER]" << std::endl;
+}
+
+void   Hammer::printNumberOfUses() {
+    std::cout << "Number of uses [HAMMER]: " << this->numberOfUses << std::endl;
 }
 
 std::string Hammer::getStr() const {

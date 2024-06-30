@@ -13,6 +13,7 @@ class Shovel : public Tool {
         void        use();
 
         void        printEquiped();
+        void        printNumberOfUses();
 
         std::string getStr() const;
         Worker*     getWorker();
@@ -22,9 +23,9 @@ class Shovel : public Tool {
 
     private:
         bool            isEquiped;
-        unsigned int    numberOfUses;
+        size_t          numberOfUses;
 
         std::string     str;
 
-        Worker  *worker;
+        Worker          *worker;
 };

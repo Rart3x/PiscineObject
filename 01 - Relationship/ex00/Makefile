@@ -10,7 +10,7 @@ DEPS := $(OBJS:.o=.d)
 MAIN_SRC = srcs/main.cpp
 MAIN_OBJ = $(OBJ_DIR)/main.o
 
-CC = clang++
+CC = g++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -MMD -MP -gdwarf-2
 
 DIRDUP = mkdir -p $(@D)

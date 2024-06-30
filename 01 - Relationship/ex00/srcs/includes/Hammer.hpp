@@ -13,6 +13,7 @@ class Hammer : public Tool {
         void        use();
 
         void        printEquiped();
+        void        printNumberOfUses();
 
         std::string getStr() const;
         Worker*     getWorker();
@@ -21,10 +22,10 @@ class Hammer : public Tool {
         void        setEquiped();
 
     private:
-        bool        isEquiped;
-        int         numberOfUses;
+        bool            isEquiped;
+        size_t          numberOfUses;
 
-        std::string str;
+        std::string     str;
 
-        Worker  *worker;
+        Worker          *worker;
 };
