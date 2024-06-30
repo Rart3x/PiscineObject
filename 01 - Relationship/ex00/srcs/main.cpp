@@ -4,6 +4,13 @@
 #include "./includes/Worker.hpp"
 #include "./includes/Workshop.hpp"
 
+void printMap(std::map<std::string, Tool *> tools) {
+    for (std::map<std::string, Tool *>::iterator it = tools.begin(); it != tools.end(); it++) {
+        std::cout << it->first << std::endl;
+    }
+}
+
+
 int main (void) {
     Tool    *tool;
 
@@ -14,6 +21,9 @@ int main (void) {
     Worker  worker1(5, 5, 100, 100000);
     Worker  *worker2 = new Worker(5, 5, 100, 100000);
     Worker  *worker3 = new Worker(5, 5, 100, 100000);
+
+    Workshop workshop("Hammer");
+    Workshop workshop1("Shovel");
 
     tool = hammer;
 
@@ -95,6 +105,39 @@ int main (void) {
         std::cout << "<-------------------Workshops--------------------->" << std::endl;
         std::cout << std::endl;
 
+        workshop.addWorker(&worker);
+
+        std::cout << std::endl;
+
+        worker.equipTool(hammer);
+
+        std::cout << std::endl;
+
+        workshop.addWorker(&worker);
+        workshop1.addWorker(&worker);
+        
+        std::cout << std::endl;
+
+        worker.equipTool(shovel);
+        workshop1.addWorker(&worker);
+        workshop1.addWorker(&worker);
+
+        std::cout << std::endl;
+
+        worker.addWorkshop(&workshop);
+        worker.addWorkshop(&workshop1);
+
+        std::cout << std::endl;
+
+        workshop.deleteWorker(&worker);
+        workshop1.deleteWorker(&worker);
+
+        std::cout << std::endl;
+
+        worker.addWorkshop(&workshop);
+        worker.addWorkshop(&workshop1);
+
+        std::cout << std::endl;
     }
 
     {

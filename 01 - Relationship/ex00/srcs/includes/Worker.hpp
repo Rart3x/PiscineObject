@@ -4,6 +4,7 @@
 #include "Workshop.hpp"
 
 #include <iostream>
+#include <list>
 #include <map>
 
 class Tool;
@@ -33,11 +34,18 @@ class Worker {
         void equipTool(Tool *tool);
         void unequipTool(Tool *tool);
 
-        std::map<std::string, Tool *> getTools() const;
+        void addWorkshop(Workshop *workshop);
+        void deleteWorkshop(Workshop *workshop);
 
+        bool isWorkerHaveTool(const std::string &tool) const;
+        void work() const;
+
+        std::map<std::string, Tool *> getTools() const;
+        std::list<Workshop *> getWorkshops() const;
     private:
         Position                coordonnee;
         Statistic               stat;
 
         std::map<std::string, Tool *>   tools;
+        std::list<Workshop *>           workshops;
 };
