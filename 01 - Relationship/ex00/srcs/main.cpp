@@ -16,6 +16,7 @@ int main (void) {
 
     Shovel  *shovel = new Shovel();
     Hammer  *hammer = new Hammer();
+    Hammer  *hammer1 = new Hammer();
     
     Worker  worker(5, 5, 100, 100000);
     Worker  worker1(5, 5, 100, 100000);
@@ -98,6 +99,12 @@ int main (void) {
 
         worker.equipTool(NULL);
         worker.unequipTool(NULL);
+
+        workshop.addWorker(NULL);
+        workshop.deleteWorker(NULL);
+
+        worker.addWorkshop(NULL);
+        worker.deleteWorkshop(NULL);
     }
 
     {
@@ -139,6 +146,16 @@ int main (void) {
 
         worker.addWorkshop(&workshop);
         worker.addWorkshop(&workshop1);
+        worker1.equipTool(hammer1);
+        worker1.addWorkshop(&workshop);
+
+        std::cout << std::endl;
+
+        worker.work();
+
+        std::cout << std::endl;
+
+        workshop.executeWorkDay();
 
         std::cout << std::endl;
 
@@ -146,6 +163,8 @@ int main (void) {
         worker.unequipTool(shovel);
 
         std::cout << std::endl;
+
+        worker.work();
     }
 
     {
@@ -170,6 +189,7 @@ int main (void) {
         shovel->printEquiped();
 
         delete hammer;
+        delete hammer1;
         delete shovel;
     }
 }
