@@ -45,6 +45,18 @@ class Worker {
 
         std::map<std::string, Tool *> getTools() const;
         std::list<Workshop *>         getWorkshops() const;
+
+        template<typename ToolType>
+        ToolType* GetTool() {
+            typename std::map<std::string, Tool*>::iterator it;
+
+            for (it = tools.begin(); it!= tools.end(); ++it) {
+                if (dynamic_cast<ToolType*>(it->second))
+                    return dynamic_cast<ToolType*>(it->second);
+            }
+            return NULL;
+        }
+
     private:
         Position                coordonnee;
         Statistic               stat;

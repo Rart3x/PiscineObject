@@ -10,7 +10,7 @@ int main (void) {
     Shovel  *shovel = new Shovel();
     Hammer  *hammer = new Hammer();
     Hammer  *hammer1 = new Hammer();
-    
+
     Worker  worker(5, 5, 100, 100000);
     Worker  worker1(5, 5, 100, 100000);
     Worker  *worker2 = new Worker(5, 5, 100, 100000);
@@ -26,9 +26,32 @@ int main (void) {
     {
         std::cout << std::endl;
         std::cout << "<-------------------Equiping/unequiping--------------------->" << std::endl;
+
+        std::cout << std::endl;
+        std::cout << "<-------------------[BONUS 1] - GetTool<ToolType>--------------------->" << std::endl;
         std::cout << std::endl;
 
         worker.equipTool(hammer);
+
+        if (worker.GetTool<Hammer>() != NULL)
+            std::cout << "Worker have a Hammer" << std::endl;
+        else
+            std::cout << "Worker don't have a Hammer" << std::endl;
+
+        std::cout << std::endl;
+
+        if (worker.GetTool<Shovel>() != NULL)
+            std::cout << "Worker have a Shovel" << std::endl;
+        else
+            std::cout << "Worker don't have a Shovel" << std::endl;
+
+        std::cout << std::endl;
+
+        Hammer  *test = worker.GetTool<Hammer>();
+        test->printEquiped();
+
+        std::cout << std::endl;
+
         worker.equipTool(shovel);
         worker.equipTool(hammer);
 
