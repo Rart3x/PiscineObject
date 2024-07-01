@@ -44,7 +44,7 @@ class Worker {
         void work() const;
 
         std::map<std::string, Tool *> getTools() const;
-        std::list<Workshop *> getWorkshops() const;
+        std::list<Workshop *>         getWorkshops() const;
     private:
         Position                coordonnee;
         Statistic               stat;

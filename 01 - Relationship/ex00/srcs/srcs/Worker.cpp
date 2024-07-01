@@ -1,10 +1,7 @@
 #include "../includes/Worker.hpp"
 
-Worker::Worker(float x, float y, int level, int exp) : coordonnee(Position(x, y)), stat(Statistic(level, exp)) {
-}
-
-Worker::~Worker() {
-}
+Worker::Worker(float x, float y, int level, int exp) : coordonnee(Position(x, y)), stat(Statistic(level, exp)) {}
+Worker::~Worker() {}
 
 void   Worker::AmIEquiped(Tool *tool) {
     if (tool) {

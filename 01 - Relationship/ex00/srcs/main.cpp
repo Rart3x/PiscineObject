@@ -4,13 +4,6 @@
 #include "./includes/Worker.hpp"
 #include "./includes/Workshop.hpp"
 
-void printMap(std::map<std::string, Tool *> tools) {
-    for (std::map<std::string, Tool *>::iterator it = tools.begin(); it != tools.end(); it++) {
-        std::cout << it->first << std::endl;
-    }
-}
-
-
 int main (void) {
     Tool    *tool;
 
@@ -25,6 +18,8 @@ int main (void) {
 
     Workshop workshop("Hammer");
     Workshop workshop1("Shovel");
+
+    Workshop *workshop2 = new Workshop("Hammer");
 
     tool = hammer;
 
@@ -110,6 +105,9 @@ int main (void) {
     {
         std::cout << std::endl;
         std::cout << "<-------------------Workshops--------------------->" << std::endl;
+
+        std::cout << std::endl;
+        std::cout << "<-------------------[BONUS 2] - Require tool for each Workshop--------------------->" << std::endl;
         std::cout << std::endl;
 
         workshop.addWorker(&worker);
@@ -156,7 +154,9 @@ int main (void) {
         workshop.executeWorkDay();
 
         std::cout << std::endl;
-
+        std::cout << "<-------------------[BONUS 3] - Unequiping a tool needed in a Workshop--------------------->" << std::endl;
+        std::cout << std::endl;
+        
         worker.unequipTool(hammer);
         worker.unequipTool(shovel);
 
@@ -179,6 +179,9 @@ int main (void) {
         workshop.addWorker(worker2);
         workshop.addWorker(worker3);
 
+        workshop2->addWorker(worker2);
+        workshop2->addWorker(worker3);
+
         std::cout << std::endl;
 
         hammer->printEquiped();
@@ -195,5 +198,7 @@ int main (void) {
         delete hammer;
         delete hammer1;
         delete shovel;
+
+        delete workshop2;
     }
 }
