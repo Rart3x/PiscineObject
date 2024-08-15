@@ -210,15 +210,19 @@ int main (void) {
         hammer->printEquiped();
         shovel->printEquiped();
 
+        std::cout << std::endl;
+
+        delete hammer;
+
+        worker2->work();
+
         delete worker2;
         delete worker3;
 
         std::cout << std::endl;
 
-        hammer->printEquiped();
         shovel->printEquiped();
 
-        delete hammer;
         delete hammer1;
         delete shovel;
 

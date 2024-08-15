@@ -1,7 +1,21 @@
 #include "../includes/Worker.hpp"
 
 Worker::Worker(float x, float y, int level, int exp) : coordonnee(Position(x, y)), stat(Statistic(level, exp)) {}
-Worker::~Worker() {}
+Worker::~Worker() {
+
+    if (this->tools.size() > 0) {
+        for (std::map<std::string, Tool*>::iterator it = this->tools.begin(); it != this->tools.end(); it++) {
+            it->second->setWorker(NULL);
+            it->second->setEquiped();
+        }
+    }
+
+    if (this->workshops.size() > 0) {
+        for (std::list<Workshop*>::iterator it = this->workshops.begin(); it != this->workshops.end(); it++) {
+            (*it)->deleteW(this);
+        }
+    }
+}
 
 void   Worker::AmIEquiped(Tool *tool) {
     if (tool) {

@@ -3,7 +3,10 @@
 Hammer::Hammer() : Tool(), isEquiped(false), numberOfUses(0), str("Hammer"), worker(NULL) {}
 Hammer::~Hammer() {
     if (this->getWorker())
+    {
+        this->worker->unequipTool(this);
         this->worker = NULL;
+    }
 }
 
 void    Hammer::use() {
