@@ -97,13 +97,7 @@ void    Car::apply_force_on_brakes(int force)
         else
             this->brakes += force;
 
-        double braking_percentage = force / 100.0;
-        double new_speed = this->speed * (1 - braking_percentage);
-
-        if (new_speed < 0)
-            new_speed = 0;
-
-        this->speed = new_speed;
+        this->decelerate(this->speed * (1 - (force / 100.0)));
 
         std::cout << "Car applied " << force << " N of force on brakes, speed is now " << this->speed << " km/h" << std::endl;
     }
@@ -114,14 +108,19 @@ void    Car::apply_emergency_brakes()
     if (this->status)
     {
         this->brakes = 100;
-
-        double new_speed = this->speed * (1 - 100.0);
-
-        if (new_speed < 0)
-            new_speed = 0;
-
-        this->speed = new_speed;
+        this->decelerate(this->speed);
 
         std::cout << "Car applied emergency brakes, speed is now " << this->speed << " km/h" << std::endl;
+    }
+}
+
+void    Car::decelerate(int speed)
+{
+    if (this->status && speed >= 0)
+    {
+        this->speed -= speed;
+
+        if (this->speed < 0)
+            this->speed = 0;
     }
 }

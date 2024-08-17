@@ -12,6 +12,7 @@ class Car
         void    stop();
 
         void    accelerate(int speed);
+        void    decelerate(int speed);
 
         void    shift_gears_up();
         void    shift_gears_down();
