@@ -76,6 +76,9 @@ int main (void) {
 	catch (const std::exception &e) {
 		std::cerr << e.what() << std::endl;
 	}
+	
+	std::cout << std::endl;
+	std::cout << bank;
 
 	try {
 		bank.loan(100000, accountA.getId());
