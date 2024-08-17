@@ -2,8 +2,8 @@
 
 #include <iostream>
 
-class Car {
-
+class Car
+{
     public:
         Car();
         ~Car();
@@ -11,24 +11,25 @@ class Car {
         void    start();
         void    stop();
 
-        void    accelerate(const float speed);
+        void    accelerate(int speed);
 
         void    shift_gears_up();
         void    shift_gears_down();
+
         void    reverse();
 
-        void    turn_wheel(const float angle);
+        void    turn_wheel(int angle);
         void    straighten_wheels();
 
-        void    apply_force_on_brakes(const float force);
+        void    apply_force_on_brakes(int force);
         void    apply_emergency_brakes();
-        
 
     private:
         bool    status;
 
-        float   speed;
-        float   wheels;
-        
+        double     brakes;
+        double     speed;
+        double     wheels;
+
         int     gears;
 };
