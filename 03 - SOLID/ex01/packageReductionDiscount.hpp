@@ -2,11 +2,13 @@
 
 #include <iostream>
 
+#include "command.hpp"
+
 class PackageReductionDiscountCommand : public Command
 {
     public:
-        PackageReductionDiscountCommand();
-        ~PackageReductionDiscountCommand();
+        PackageReductionDiscountCommand() : Command() {}
+        ~PackageReductionDiscountCommand() {}
 
         void get_total_price()
         {
